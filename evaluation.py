@@ -7,7 +7,7 @@ import os
 from datetime import datetime
 
 EVALUATOR = "strongreject_finetuned"
-RESPONSES_FILE = "responses/my_jailbreaks_and_responses.csv" 
+RESPONSES_FILE = "responses/vicuna_jbb.csv" 
 experiment_name = "vicuna_jbb"
 
 run_dir = os.path.join("results", experiment_name,datetime.now().strftime("%Y%m%d_%H%M%S"))
