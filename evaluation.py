@@ -8,9 +8,9 @@ from datetime import datetime
 
 evaluation_type = "rubric"
 EVALUATOR = f"strongreject_{evaluation_type}"
-RESPONSES_FILE = "responses/llama2_jbb.csv" 
+RESPONSES_FILE = "responses/vicuna_jbb.csv" 
 
-experiment_name = "llama_jbb_{evaluation_type}"
+experiment_name = f"vicuna_jbb_{evaluation_type}"
 
 run_dir = os.path.join("results", experiment_name,datetime.now().strftime("%Y%m%d_%H%M%S"))
 os.makedirs(run_dir, exist_ok=True)
@@ -29,5 +29,4 @@ eval_df = eval_dataset.to_pandas()
 eval_df.to_csv(os.path.join(run_dir, "evaluation_results.csv"), index=False)
 
 print(f"All artifacts saved to: {run_dir}")
-print(summary)
 
