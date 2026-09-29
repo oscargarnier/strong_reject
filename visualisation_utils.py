@@ -5,6 +5,13 @@ from pathlib import Path
 from datetime import datetime
 
 
+
+dataset_suffix_dictionary = {
+    "jailbreakbench": "jbb"
+}
+
+
+
 def cumulative(scores, plot_title=None, save_path=None, quantiles=None):
     values, counts = np.unique(scores, return_counts=True)
     cumulative_counts = np.cumsum(counts)
@@ -17,6 +24,7 @@ def cumulative(scores, plot_title=None, save_path=None, quantiles=None):
                        label="Quantile boundary")
     ax.set_xlabel("Score")
     ax.set_ylabel("Cumulative count")
+    ax.set_xlim(0, 1)            # fixed x-axis scale
     plt.ylim(0, 100)           # fixed y-axis scale
     plt.title(plot_title if plot_title else 'Cumulative Frequency of Evaluation Levels',
               fontsize=12, fontweight='bold')
@@ -35,9 +43,10 @@ def cumulative(scores, plot_title=None, save_path=None, quantiles=None):
     return ax
 
 
-def latest_evaluation_file(results_root, model, filename="evaluation_results.csv"):
+
+def latest_evaluation_file(results_root, exp_key, filename="evaluation_results.csv"):
     """Return the evaluation file from the newest timestamped model run."""
-    model_directory = Path(results_root) / f"{model.lower()}_jbb"
+    model_directory = Path(results_root) / exp_key
     timestamp_format = "%Y%m%d_%H%M%S"
     run_directories = []
 
