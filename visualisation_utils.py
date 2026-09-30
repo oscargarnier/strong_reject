@@ -12,7 +12,7 @@ dataset_suffix_dictionary = {
 
 
 
-def cumulative(scores, plot_title=None, save_path=None, quantiles=None):
+def cumulative_quantiles(scores, plot_title=None, save_path=None, quantiles=None):
     values, counts = np.unique(scores, return_counts=True)
     cumulative_counts = np.cumsum(counts)
 
@@ -26,18 +26,20 @@ def cumulative(scores, plot_title=None, save_path=None, quantiles=None):
     ax.set_ylabel("Cumulative count")
     ax.set_xlim(0, 1)            # fixed x-axis scale
     plt.ylim(0, 100)           # fixed y-axis scale
-    plt.title(plot_title if plot_title else 'Cumulative Frequency of Evaluation Levels',
+    actual_plot_title = plot_title if plot_title else f'Cumulative Frequency of Evaluation Levels: {plot_title}'
+    plt.title(actual_plot_title,
               fontsize=12, fontweight='bold')
     ax.grid(True, alpha=0.3)
     fig.tight_layout()
     if save_path:
-        plt.savefig(save_path,
+        actual_save_path = f"figures/cumulative_evaluation_{save_path}"
+        plt.savefig(actual_save_path,
                     format='pdf',
                     bbox_inches='tight',
                     pad_inches=0.1,
                     facecolor='white',
                     transparent=False)
-        print(f"Chart saved to {save_path}")
+        print(f"Chart saved to {actual_save_path}")
 
     fig.show()
     return ax

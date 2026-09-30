@@ -36,6 +36,9 @@ def extract_evaluation(entry):
     evaluation = entry["annotations"][0]["result"][0]["value"]["choices"][-1]
     return level_dictionary.get(evaluation, "Unknown")
 
+def extract_goal(entry):
+    return entry["data"]["goal"]
+
 def compute_frequencies(labels):
     frequencies = {}
     for entry in labels:
@@ -93,13 +96,14 @@ def cumulative_frequency_chart(frequencies, all_levels=['0', '1', '2', '3', '4',
     plt.grid(True)
 
     if save_path:
-        plt.savefig(save_path,
+        actual_save_path = f"figures/cumulative_frequency_{save_path}"
+        plt.savefig(actual_save_path,
                     format='pdf',
                     bbox_inches='tight',
                     pad_inches=0.1,
                     facecolor='white',
                     transparent=False)
-        print(f"Chart saved to {save_path}")
+        print(f"Chart saved to {actual_save_path}")
 
     plt.show()
 
@@ -161,13 +165,105 @@ def bar_chart(frequencies, plot_title=None,save_path=None, all_labels = ["0","1"
     plt.tight_layout()
     
     if save_path:
+        actual_save_path = f"figures/bar_chart_{save_path}"
         # LaTeX-optimized save settings
-        plt.savefig(save_path, 
+        plt.savefig(actual_save_path, 
                    format='pdf',
                    bbox_inches='tight',
                    pad_inches=0.1,
                    facecolor='white',
                    transparent=False)
-        print(f"Chart saved to {save_path}")
+        print(f"Chart saved to {actual_save_path}")
     
     plt.show()
+
+def color_cumulative(evaluations, matching_experiments, save_path=None, quantiles = None, plot_title=None):
+    evaluation_data = evaluations[["score", "forbidden_prompt"]].copy()
+
+    experiment_entries = (
+        matching_experiments.values()
+        if isinstance(matching_experiments, dict)
+        else matching_experiments
+    )
+    category_by_goal = {
+        entry["data"]["goal"]: extract_evaluation(entry)
+        for entry in experiment_entries
+    }
+
+    missing_goals = set(evaluation_data["forbidden_prompt"]) - set(category_by_goal)
+    if missing_goals:
+        raise ValueError(
+            f"No matching experiment category for {len(missing_goals)} evaluation prompt(s)."
+        )
+
+    evaluation_data["category"] = evaluation_data["forbidden_prompt"].map(category_by_goal)
+    scores = evaluation_data["score"].to_numpy()
+    cumulative_lower = np.array([
+        np.count_nonzero(scores < score) for score in scores
+    ])
+
+    palette = ['#1f77b4', '#2ca02c', '#ff7f0e', '#8c564b', '#9467bd', '#d62728']
+    categories = sorted(evaluation_data["category"].unique())
+    color_by_category = {
+        category: palette[index % len(palette)]
+        for index, category in enumerate(categories)
+    }
+    category_counts = evaluation_data["category"].value_counts().to_dict()
+
+    if quantiles is not None:
+        ## This is the total number of possible positives
+        accuracy_info = {}
+        category_counts = evaluation_data["category"].value_counts().to_dict()
+        quantiles = np.append(np.insert(quantiles, 0, 0.0), 1.0)
+        for i in range(len(quantiles) - 1):
+            category = str(i)
+            points_in_category = evaluation_data["category"] == category
+            category_scores = scores[points_in_category]
+            ## These are the positives
+            category_and_quantile_scores= category_scores[(category_scores >= quantiles[i]) & (category_scores < quantiles[i+1])]
+            ##This is the number of predictions
+            quantile_scores = scores[(scores >= quantiles[i]) & (scores < quantiles[i+1])]
+            precision = len(category_and_quantile_scores) / len(quantile_scores) if len(quantile_scores) > 0 else 0
+            recall = len(category_and_quantile_scores) / category_counts.get(category, 1)
+            f1 = (2 * precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+            accuracy_info[category] = {
+                "precision": precision,
+                "recall": recall,
+                "f1": f1
+            }
+
+
+    fig, ax = plt.subplots()
+    for category in categories:
+        points = evaluation_data["category"] == category
+        ax.scatter(
+            scores[points],
+            cumulative_lower[points],
+            color=color_by_category[category],
+            label=str(category) if quantiles is None else f"{category} (Precision={accuracy_info[category]['precision']:.2f}, Recall={accuracy_info[category]['recall']:.2f}, F1={accuracy_info[category]['f1']:.2f})",
+        )
+    if quantiles is not None:
+        for quantile in quantiles:
+            ax.axvline(quantile, color="tab:red", linestyle="--", alpha=0.7)
+
+    ax.set_xlabel("Score")
+    ax.set_ylabel("Number of points with a lower score")
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, len(evaluation_data) - 1)
+    actual_plot_title = "Cumulative count by evaluation category" if plot_title is None else f"Cumulative count by category: {plot_title}"
+    ax.set_title(actual_plot_title)
+    ax.grid(True, alpha=0.3)
+    ax.legend(title="Category")
+    fig.tight_layout()
+    if save_path:
+        actual_save_path = f"figures/color_cumulative_{save_path}"
+        plt.savefig(actual_save_path,
+                    format='pdf',
+                    bbox_inches='tight',
+                    pad_inches=0.1,
+                    facecolor='white',
+                    transparent=False)
+        print(f"Chart saved to {actual_save_path}")
+    plt.show()
+    return ax
+
