@@ -20,13 +20,14 @@ tiny_forbidden_prompt_dataset.to_pandas().to_csv(
 )
 
 # apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
-jailbroken_dataset = apply_jailbreaks_to_dataset(tiny_forbidden_prompt_dataset, ["pair"], victim_model="gpt-3.5-turbo" )
+victim_model = "hf:lmsys/vicuna-7b-v1.5"
+jailbroken_dataset = apply_jailbreaks_to_dataset(tiny_forbidden_prompt_dataset, ["pair"], victim_model=victim_model)
 jailbroken_dataset.to_pandas().to_csv(
     os.path.join(run_dir, "02_jailbroken_prompts.csv"), index=False
 )
 
 # get responses to the jailbroken prompts from GPT-3.5 Turbo
-responses_dataset = generate_to_dataset(jailbroken_dataset, ["gpt-3.5-turbo"], target_column="jailbroken_prompt")
+responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt")
 responses_dataset.to_pandas().to_csv(
     os.path.join(run_dir, "03_responses.csv"), index=False
 )
