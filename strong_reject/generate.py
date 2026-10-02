@@ -10,7 +10,7 @@ from datasets import Dataset, concatenate_datasets
 from litellm import completion
 from transformers.pipelines.pt_utils import KeyDataset
 from transformers.pipelines.text_generation import TextGenerationPipeline
-
+from strong_reject.local_models import load_model
 
 def convert_to_messages(
     prompt: Union[str, list[str], list[dict[str, str]]], system_prompt: str = None
@@ -74,7 +74,11 @@ def generate(
         return ""
 
     messages = convert_to_messages(prompt, system_prompt=system_prompt)
-    if isinstance(model, TextGenerationPipeline):
+
+    #Previous code tested for local models like this
+    #if isinstance(model, TextGenerationPipeline):
+    if isinstance(model, str) and model.startswith("hf:"):
+        model = load_model(model[3:])
         kwargs.setdefault("return_full_text", False)
         return model(messages, **kwargs)[0]["generated_text"]
 
