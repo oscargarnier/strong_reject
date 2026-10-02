@@ -1,6 +1,25 @@
 from functools import lru_cache
 from transformers import pipeline, TextGenerationPipeline
 
+VICUNA_TEMPLATE = (
+    "{% if messages[0]['role'] == 'system' %}"
+    "{% set system = messages[0]['content'] %}{% set messages = messages[1:] %}"
+    "{% else %}"
+    "{% set system = \"A chat between a curious user and an artificial intelligence assistant. "
+    "The assistant gives helpful, detailed, and polite answers to the user's questions.\" %}"
+    "{% endif %}"
+    "{{ bos_token + system + ' ' }}"
+    "{% for m in messages %}"
+    "{% if m['role'] == 'user' %}{{ 'USER: ' + m['content'] + ' ' }}"
+    "{% else %}{{ 'ASSISTANT: ' + m['content'] + eos_token }}"
+    "{% endif %}{% endfor %}"
+    "{% if add_generation_prompt %}{{ 'ASSISTANT:' }}{% endif %}"
+)
+
+DEFAULT_TEMPLATES = {
+    "vicuna": VICUNA_TEMPLATE,
+}
+
 
 @lru_cache(maxsize=None)  # load each model once per process
 def load_model(
@@ -27,7 +46,12 @@ def load_model(
     tok = pipe.tokenizer
     if tok.pad_token is None:  # avoids a warning on Llama/Vicuna-style tokenizers
         tok.pad_token = tok.eos_token
+
     if chat_template is not None:
         tok.chat_template = chat_template
-
+    elif tok.chat_template is None:
+        for key, template in DEFAULT_TEMPLATES.items():
+            if key in name.lower():
+                tok.chat_template = template
+                break
     return pipe
