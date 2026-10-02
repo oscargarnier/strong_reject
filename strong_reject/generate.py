@@ -42,6 +42,17 @@ def convert_to_messages(
     return messages
 
 
+def to_hf_kwargs(kwargs: dict) -> dict:
+    kwargs = dict(kwargs)  # don't mutate the caller's dict
+    renames = {
+        "max_tokens": "max_new_tokens",
+        # add others as needed, e.g. "stop": "stop_strings" (needs tokenizer passed too)
+    }
+    for old, new in renames.items():
+        if old in kwargs:
+            kwargs[new] = kwargs.pop(old)
+    return kwargs
+
 def generate(
     prompt: Union[str, list[str], list[dict[str, str]]],
     model: Union[str, TextGenerationPipeline],
@@ -80,12 +91,13 @@ def generate(
     if isinstance(model, str) and model.startswith("hf:"):
         model = load_model(model[3:])
         kwargs.setdefault("return_full_text", False)
+        kwargs = to_hf_kwargs(kwargs)
+        print(f"kwargs for {model}: {kwargs}")
         return model(messages, **kwargs)[0]["generated_text"]
 
     for _ in range(num_retries):
         if delay > 0:
             time.sleep(delay)
-
         try:
             response = completion(model, messages=messages, **kwargs).choices[0].message.content
             if response is not None:
