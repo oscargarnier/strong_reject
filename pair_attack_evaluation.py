@@ -6,10 +6,11 @@ from strong_reject.evaluate import evaluate_dataset
 import os
 from datetime import datetime
 
-EVALUATOR = "strongreject_finetuned"
-
+evaluator_type = finetuned
+EVALUATOR = f"strongreject_{evaluator_type}"
+victim_model = "openai/gpt-3.5-turbo"
 # Create an output directory for this run, timestamped so repeated runs don't overwrite each other
-run_dir = os.path.join("results", datetime.now().strftime("%Y%m%d_%H%M%S"))
+run_dir = os.path.join("results", f"{victim_model.split("/")[-1]}_{evaluator_type}", datetime.now().strftime("%Y%m%d_%H%M%S"))
 os.makedirs(run_dir, exist_ok=True)
 
 # load the small version of the StrongREJECT dataset
@@ -20,7 +21,7 @@ tiny_forbidden_prompt_dataset.to_pandas().to_csv(
 )
 
 # apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
-victim_model = "hf:lmsys/vicuna-7b-v1.5"
+#victim_model = "hf:lmsys/vicuna-7b-v1.5"
 jailbroken_dataset = apply_jailbreaks_to_dataset(tiny_forbidden_prompt_dataset, ["pair"], victim_model=victim_model)
 jailbroken_dataset.to_pandas().to_csv(
     os.path.join(run_dir, "02_jailbroken_prompts.csv"), index=False
