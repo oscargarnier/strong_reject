@@ -21,7 +21,7 @@ df = pd.read_csv(dataset_file)
 forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
 # apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
-jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pair"], victim_model=victim_model)
+jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pair"], victim_model=victim_model, max_tokens = 500)
 jailbroken_dataset.to_pandas().to_csv(
     os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
 )
