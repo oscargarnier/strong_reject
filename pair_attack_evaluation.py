@@ -5,42 +5,39 @@ from strong_reject.evaluate import evaluate_dataset
 
 import os
 from datetime import datetime
+import pandas as pd
+from datasets import Dataset
 
-evaluator_type = finetuned
-EVALUATOR = f"strongreject_{evaluator_type}"
-victim_model = "openai/gpt-3.5-turbo"
+EVALUATOR = f"strongreject_finetuned"
+victim_model = "hf:lmsys/vicuna-7b-v1.5"
+dataset_file = "data/strong_reject100.csv"
 # Create an output directory for this run, timestamped so repeated runs don't overwrite each other
-run_dir = os.path.join("results", f"{victim_model.split("/")[-1]}_{evaluator_type}", datetime.now().strftime("%Y%m%d_%H%M%S"))
+run_dir = os.path.join("results", f"{victim_model.split("/")[-1]}_{dataset_file.split("/")[-1].split(".")[0]}_{EVALUATOR.split('_')[-1]}", datetime.now().strftime("%Y%m%d_%H%M%S"))
 os.makedirs(run_dir, exist_ok=True)
 
+#TODO have this load from a permanent set of jailbreaks
 # load the small version of the StrongREJECT dataset
-forbidden_prompt_dataset = load_strongreject_small()
-tiny_forbidden_prompt_dataset = forbidden_prompt_dataset.select(range(3))
-tiny_forbidden_prompt_dataset.to_pandas().to_csv(
-    os.path.join(run_dir, "01_forbidden_prompts.csv"), index=False
-)
+df = pd.read_csv(dataset_file)
+forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
 # apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
-#victim_model = "hf:lmsys/vicuna-7b-v1.5"
-jailbroken_dataset = apply_jailbreaks_to_dataset(tiny_forbidden_prompt_dataset, ["pair"], victim_model=victim_model)
+jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pair"], victim_model=victim_model)
 jailbroken_dataset.to_pandas().to_csv(
-    os.path.join(run_dir, "02_jailbroken_prompts.csv"), index=False
+    os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
 )
 
-# get responses to the jailbroken prompts from GPT-3.5 Turbo
+# generate responses to the jailbroken prompts
 responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt")
-responses_dataset.to_pandas().to_csv(
-    os.path.join(run_dir, "03_responses.csv"), index=False
-)
+# We won't save
+#pd_responses_dataset.to_csv(os.path.join(run_dir, "responses.csv"), index=False)
 
 # use the StrongREJECT evaluator to score the harmfulness of the responses
 eval_dataset = evaluate_dataset(responses_dataset, [EVALUATOR])
 eval_df = eval_dataset.to_pandas()
-eval_df.to_csv(os.path.join(run_dir, "04_eval_full.csv"), index=False)
+eval_df.to_csv(os.path.join(run_dir, "responses_and_evaluations.csv"), index=False)
 
 # compare the average harmfulness of the new jailbreak to the no-jailbreak baseline
 summary = eval_df.groupby("jailbreak")["score"].mean()
-summary.to_csv(os.path.join(run_dir, "05_summary_by_jailbreak.csv"))
 
 print(f"All artifacts saved to: {run_dir}")
 print(summary)
