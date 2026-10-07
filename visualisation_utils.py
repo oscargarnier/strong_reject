@@ -46,7 +46,7 @@ def cumulative_quantiles(scores, plot_title=None, save_path=None, quantiles=None
 
 
 
-def latest_evaluation_file(results_root, exp_key, filename="evaluation_results.csv"):
+def latest_evaluation_file(results_root, exp_key, filename="responses_and_evaluations.csv"):
     """Return the evaluation file from the newest timestamped model run."""
     model_directory = Path(results_root) / exp_key
     timestamp_format = "%Y%m%d_%H%M%S"
