@@ -14,7 +14,7 @@ victim_model = "hf:meta-llama/Llama-2-7b-chat-hf"
 
 dataset_file = "data/strong_reject100.csv"
 # Create an output directory for this run, timestamped so repeated runs don't overwrite each other
-run_dir = os.path.join("results", f"{victim_model.split("/")[-1]}_{dataset_file.split("/")[-1].split(".")[0]}_{EVALUATOR.split('_')[-1]}", datetime.now().strftime("%Y%m%d_%H%M%S"))
+run_dir = os.path.join("results", f"{victim_model.split("/")[-1]}_{dataset_file.split("/")[-1].split(".")[0]}_pair_{EVALUATOR.split('_')[-1]}", datetime.now().strftime("%Y%m%d_%H%M%S"))
 os.makedirs(run_dir, exist_ok=True)
 
 # load the small version of the StrongREJECT dataset
