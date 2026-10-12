@@ -42,7 +42,7 @@ else:
         os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
     )
 
-print(f"===================================== \n Generating responses to the jailbroken prompts using {victim_model} \n=====================================")
+print(100*"=", f"\n Generating responses to the jailbroken prompts using {victim_model} \n", 100*"=") 
 # generate responses to the jailbroken prompts
 responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt")
 # We won't save
@@ -50,7 +50,7 @@ responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], targ
 
 # use the StrongREJECT evaluator to score the harmfulness of the responses
 
-print(f"===================================== \n Evaluating responses using {EVALUATOR} \n=====================================")
+print(100*"=", f"\n Evaluating responses using {EVALUATOR} \n", 100*"=")
 eval_dataset = evaluate_dataset(responses_dataset, [EVALUATOR])
 eval_df = eval_dataset.to_pandas()
 eval_df.to_csv(os.path.join(run_dir, "responses_and_evaluations.csv"), index=False)
