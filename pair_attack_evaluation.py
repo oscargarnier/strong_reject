@@ -15,24 +15,34 @@ victim_model = "hf:meta-llama/Llama-2-7b-chat-hf"
 dataset_file = "data/strong_reject100.csv"
 # Create an output directory for this run, timestamped so repeated runs don't overwrite each other
 run_dir = os.path.join("results", f"{victim_model.split("/")[-1]}_{dataset_file.split("/")[-1].split(".")[0]}_pair_{EVALUATOR.split('_')[-1]}", datetime.now().strftime("%Y%m%d_%H%M%S"))
+print(f"Saving all artifacts to: {run_dir}")
 os.makedirs(run_dir, exist_ok=True)
 
 # load the small version of the StrongREJECT dataset
 df = pd.read_csv(dataset_file)
 forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
-# apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
-jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pair"], victim_model=victim_model, max_tokens = 500)
-jailbroken_dataset.to_pandas().to_csv(
-    os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
-)
+## check for existing file and load it
+if os.path.exists(os.path.join(run_dir, "jailbroken_prompts.csv")):
+    print(f"Loading existing jailbroken prompts from {os.path.join(run_dir, 'jailbroken_prompts.csv')}")
+    jailbroken_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "jailbroken_prompts.csv")))
+else:
+    print("No existing jailbroken prompts found. Applying jailbreak.")
+    # apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
+    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pair"], victim_model=victim_model, max_tokens = 500)
+    jailbroken_dataset.to_pandas().to_csv(
+        os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
+    )
 
+print(f"===================================== \n Generating responses to the jailbroken prompts using {victim_model} \n=====================================")
 # generate responses to the jailbroken prompts
 responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt")
 # We won't save
 #pd_responses_dataset.to_csv(os.path.join(run_dir, "responses.csv"), index=False)
 
 # use the StrongREJECT evaluator to score the harmfulness of the responses
+
+print(f"===================================== \n Evaluating responses using {EVALUATOR} \n=====================================")
 eval_dataset = evaluate_dataset(responses_dataset, [EVALUATOR])
 eval_df = eval_dataset.to_pandas()
 eval_df.to_csv(os.path.join(run_dir, "responses_and_evaluations.csv"), index=False)
