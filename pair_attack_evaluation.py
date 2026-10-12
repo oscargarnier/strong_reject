@@ -14,20 +14,24 @@ victim_model = "hf:meta-llama/Llama-2-7b-chat-hf"
 
 dataset_file = "data/strong_reject100.csv"
 # Create an output directory for this run, timestamped so repeated runs don't overwrite each other
-run_dir = os.path.join("results", f"{victim_model.split("/")[-1]}_{dataset_file.split("/")[-1].split(".")[0]}_pair_{EVALUATOR.split('_')[-1]}", datetime.now().strftime("%Y%m%d_%H%M%S"))
-print(f"Saving all artifacts to: {run_dir}")
-os.makedirs(run_dir, exist_ok=True)
-
+run_dir_alltime = os.path.join("results", f"{victim_model.split("/")[-1]}_{dataset_file.split("/")[-1].split(".")[0]}_pair_{EVALUATOR.split('_')[-1]}")
 # load the small version of the StrongREJECT dataset
 df = pd.read_csv(dataset_file)
 forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
 ## check for existing file and load it
-if os.path.exists(os.path.join(run_dir, "jailbroken_prompts.csv")):
+## The prior jailbreaks might have been calculated at another time, so we want to load them if they exist, otherwise we will apply the jailbreaks and save them for future use
+for path in os.listdir(run_dir_alltime):
+    if os.path.exists(os.path.join(run_dir_alltime, path, "jailbroken_prompts.csv")):
+        run_dir = os.path.join(run_dir_alltime, path)
     print(f"Loading existing jailbroken prompts from {os.path.join(run_dir, 'jailbroken_prompts.csv')}")
     jailbroken_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "jailbroken_prompts.csv")))
 else:
     print("No existing jailbroken prompts found. Applying jailbreak.")
+    run_dir = os.path.join(run_dir_alltime,datetime.now().strftime("%Y%m%d_%H%M%S"))
+    print(f"Saving all artifacts to: {run_dir}")
+    os.makedirs(run_dir, exist_ok=True)
+
     # apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
     jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pair"], victim_model=victim_model, max_tokens = 500)
     jailbroken_dataset.to_pandas().to_csv(
