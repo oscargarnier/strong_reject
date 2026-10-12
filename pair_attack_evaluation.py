@@ -21,17 +21,21 @@ forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
 ## check for existing file and load it
 ## The prior jailbreaks might have been calculated at another time, so we want to load them if they exist, otherwise we will apply the jailbreaks and save them for future use
+jailbreaks_found = False
 for path in os.listdir(run_dir_alltime):
     if os.path.exists(os.path.join(run_dir_alltime, path, "jailbroken_prompts.csv")):
         run_dir = os.path.join(run_dir_alltime, path)
+        jailbreaks_found = True
+        break
+if jailbreaks_found:
     print(f"Loading existing jailbroken prompts from {os.path.join(run_dir, 'jailbroken_prompts.csv')}")
     jailbroken_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "jailbroken_prompts.csv")))
+    print(f"Saving all artifacts to: {run_dir}")
 else:
     print("No existing jailbroken prompts found. Applying jailbreak.")
     run_dir = os.path.join(run_dir_alltime,datetime.now().strftime("%Y%m%d_%H%M%S"))
-    print(f"Saving all artifacts to: {run_dir}")
     os.makedirs(run_dir, exist_ok=True)
-
+    print(f"Saving all artifacts to: {run_dir}")
     # apply the new jailbreak and compare it to a no-jailbreak baseline ("none")
     jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pair"], victim_model=victim_model, max_tokens = 500)
     jailbroken_dataset.to_pandas().to_csv(
