@@ -15,9 +15,34 @@ VICUNA_TEMPLATE = (
     "{% endif %}{% endfor %}"
     "{% if add_generation_prompt %}{{ 'ASSISTANT:' }}{% endif %}"
 )
+LLAMA2_TEMPLATE = (
+    "{% if messages[0]['role'] == 'system' %}"
+    "{% set system_message = messages[0]['content'] %}"
+    "{% set loop_messages = messages[1:] %}"
+    "{% else %}"
+    "{% set system_message = false %}"
+    "{% set loop_messages = messages %}"
+    "{% endif %}"
+    "{% for message in loop_messages %}"
+    "{% if (message['role'] == 'user') != (loop.index0 % 2 == 0) %}"
+    "{{ raise_exception('Conversation roles must alternate user/assistant/user/assistant/...') }}"
+    "{% endif %}"
+    "{% if loop.index0 == 0 and system_message != false %}"
+    "{% set content = '<<SYS>>\\n' + system_message + '\\n<</SYS>>\\n\\n' + message['content'] %}"
+    "{% else %}"
+    "{% set content = message['content'] %}"
+    "{% endif %}"
+    "{% if message['role'] == 'user' %}"
+    "{{ bos_token + '[INST] ' + content.strip() + ' [/INST]' }}"
+    "{% elif message['role'] == 'assistant' %}"
+    "{{ ' ' + content.strip() + ' ' + eos_token }}"
+    "{% endif %}"
+    "{% endfor %}"
+)
 
 DEFAULT_TEMPLATES = {
     "vicuna": VICUNA_TEMPLATE,
+    "llama2": LLAMA2_TEMPLATE,
 }
 
 
