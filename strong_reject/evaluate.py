@@ -461,6 +461,7 @@ def strongreject_finetuned(
             "EleutherAI/pythia-14m" if os.getenv("TESTING") else "qylu4156/strongreject-15k-v1"
         )
         # load model
+        print(f"Loading evalutor model {model_name}...")
         try:
             model = AutoModelForCausalLM.from_pretrained(
                 model_name, device_map="auto", torch_dtype=torch.bfloat16
