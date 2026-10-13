@@ -8,6 +8,10 @@ from datetime import datetime
 import pandas as pd
 from datasets import Dataset
 
+
+print(f"Counting cpus", 100 * "*")
+print(os.cpu_count(), len(os.sched_getaffinity(0)), os.environ.get("SLURM_CPUS_PER_TASK"))
+
 EVALUATOR = f"strongreject_finetuned"
 #victim_model = "hf:lmsys/vicuna-7b-v1.5"
 victim_model = "hf:meta-llama/Llama-2-7b-chat-hf"
@@ -44,7 +48,7 @@ else:
 
 print(100*"=", f"\n Generating responses to the jailbroken prompts using {victim_model} \n", 100*"=") 
 # generate responses to the jailbroken prompts
-responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt")
+responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1)
 # We won't save
 #pd_responses_dataset.to_csv(os.path.join(run_dir, "responses.csv"), index=False)
 
