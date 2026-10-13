@@ -139,7 +139,6 @@ def generate_to_dataset(
     kwargs_hf.setdefault("return_full_text", False)
     for model in models:
         if isinstance(model, TextGenerationPipeline):
-            print("text generation pipeline")
             model_name = model.model.name_or_path
             responses = []
             for response in model(key_dataset, batch_size=batch_size, **kwargs_hf):
@@ -147,21 +146,25 @@ def generate_to_dataset(
 
             generated_dataset = dataset.add_column("response", responses)
         else:
-            print("api model")
+            print("Confirming the api model branch")
             model_name = model
             # We will strike this line for now, as it is not working on Adastra
+            '''
             generated_dataset = dataset.map(
                 lambda x: {"response": generate(x[target_column], model, **kwargs)},
                 num_proc=num_processes,
             )
             '''
-            generated_dataset = []
-            for batch in jailbroken_dataset.iter(batch_size=4): # or loop item by item
-                # Run inference directly in the main thread/process
-                outputs = generate_response(victim_model, batch["jailbroken_prompt"])
-                results.extend(outputs)
 
-            '''
+            responses = []
+            for x in dataset:
+                # Run inference sequentially on each item in the main process
+                res = generate(x[target_column], model, **kwargs)
+                responses.append(res)
+            
+            # Add the responses back as a new column, returning a valid Hugging Face Dataset
+            generated_dataset = dataset.add_column("response", responses)
+
         generated_dataset = generated_dataset.add_column(
             "model", len(generated_dataset) * [model_name]
         )
