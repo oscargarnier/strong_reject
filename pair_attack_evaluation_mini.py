@@ -47,23 +47,22 @@ else:
 
 print(100*"=", f"\n Generating responses to the jailbroken prompts using {victim_model} \n", 100*"=") 
 # generate responses to the jailbroken prompts
-generation_found = False
-for path in os.listdir(run_dir_alltime):
-    if os.path.exists(os.path.join(run_dir_alltime, path, "responses.csv")):
-        run_dir = os.path.join(run_dir_alltime, path)
-        generation_found = True
-if generation_found:
-    print(f"Loading existing generated responses from {os.path.join(run_dir, 'responses.csv')}")
-    responses_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "responses.csv")))
-    print(f"Saving all artifacts to: {run_dir}")
+
+if jailbreaks_found:
+    print(f"Staying in directory {run_dir}")
+    if os.path.exists(os.path.join(run_dir, "responses_mini.csv")):
+        print(f"Loading existing generated responses from {os.path.join(run_dir, 'responses_mini.csv')}")
+        responses_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "responses_mini.csv")))
+    else:
+        print("No existing generations found. Applying generation.")
+        print(f"Saving all artifacts to: {run_dir}")
+        responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1)
+        responses_dataset.to_pandas().to_csv(os.path.join(run_dir, "responses_mini.csv"), index=False)
 else:
     print("No existing generations found. Applying generation.")
-    run_dir = os.path.join(run_dir_alltime,datetime.now().strftime("%Y%m%d_%H%M%S"))
-    os.makedirs(run_dir, exist_ok=True)
     print(f"Saving all artifacts to: {run_dir}")
     responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1)
     responses_dataset.to_pandas().to_csv(os.path.join(run_dir, "responses_mini.csv"), index=False)
-
 
 
 # use the StrongREJECT evaluator to score the harmfulness of the responses

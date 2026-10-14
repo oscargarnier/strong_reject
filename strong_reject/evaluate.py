@@ -464,10 +464,11 @@ def strongreject_finetuned(
         print(f"Loading evalutor model {model_name}...")
         try:
             model = AutoModelForCausalLM.from_pretrained(
-                model_name, device_map="auto", torch_dtype=torch.bfloat16
+                model_name, device_map="auto", torch_dtype=torch.bfloat16,
+                local_files_only=True
             )
         except:
-            model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
+            model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", local_files_only=True)
 
         model.eval()
 

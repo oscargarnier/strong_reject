@@ -148,7 +148,8 @@ def generate_to_dataset(
         else:
             print("Confirming the api model branch")
             model_name = model
-            # We will strike this line for now, as it is not working on Adastra
+            # This map function is not adequate for local model inference
+            
             '''
             generated_dataset = dataset.map(
                 lambda x: {"response": generate(x[target_column], model, **kwargs)},
@@ -159,7 +160,7 @@ def generate_to_dataset(
             responses = []
             for x in dataset:
                 # Run inference sequentially on each item in the main process
-                print(f"Generating response for prompt: {x[target_column]}")
+                print(f"Generating response for prompt: {x[target_column]}",    flush=True)
                 res = generate(x[target_column], model, **kwargs)
                 responses.append(res)
             
