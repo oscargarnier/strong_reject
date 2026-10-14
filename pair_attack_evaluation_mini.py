@@ -12,6 +12,9 @@ from datasets import Dataset
 print(f"Counting cpus", 100 * "*")
 print(os.cpu_count(), len(os.sched_getaffinity(0)), os.environ.get("SLURM_CPUS_PER_TASK"))
 
+print(f"HB_HUB_ONLINE {print(os.environ.get('HB_HUB_ONLINE'))}")
+print(f"HOme {print(os.environ.get('HF_HOME'))}")
+
 EVALUATOR = f"strongreject_finetuned"
 #victim_model = "hf:lmsys/vicuna-7b-v1.5"
 victim_model = "hf:meta-llama/Llama-2-7b-chat-hf"
