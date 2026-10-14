@@ -473,8 +473,10 @@ def strongreject_finetuned(
         model.eval()
 
         # load tokenizer
+        base_model_name = "google/gemma-2b"
+        print(f"Attempting hardcoded alternative, loading tokenizer {base_model_name}...")
         tokenizer = AutoTokenizer.from_pretrained(
-            model_name, padding_side="left", truncation_side="left"
+            base_model_name, padding_side="left", truncation_side="left"
         )
         if not tokenizer.pad_token:
             tokenizer.pad_token = tokenizer.eos_token
