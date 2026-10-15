@@ -1,0 +1,159 @@
+Confirming local strong reject use
+Counting cpus ****************************************************************************************************
+128 8 4
+None
+HB_HUB_ONLINE None
+/lus/work/CT10/c2016159/ogarnier/hf_cache
+HOme None
+Loading existing jailbroken prompts from results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627/jailbroken_prompts_mini.csv
+Saving all artifacts to: results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627
+==================================================================================================== 
+ Generating responses to the jailbroken prompts using hf:meta-llama/Llama-2-7b-chat-hf 
+ ====================================================================================================
+Staying in directory results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627
+Loading existing generated responses from results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627/responses_mini.csv
+==================================================================================================== 
+ Evaluating responses using strongreject_finetuned 
+ ====================================================================================================
+Map:   0%|          | 0/1 [00:00<?, ? examples/s][transformers] We found `hidden_act="gelu"` in this Gemma config. This is a legacy value of the official releases but it is meant to target the tanh approximation. Setting `hidden_act="gelu_pytorch_tanh"` instead.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading evalutor model qylu4156/strongreject-15k-v1...
+
+Loading weights:   0%|          | 0/164 [00:00<?, ?it/s][A
+Loading weights:   1%|          | 1/164 [00:07<20:11,  7.43s/it][A
+Loading weights:   7%|▋         | 12/164 [00:08<01:19,  1.90it/s][A
+Loading weights:   9%|▊         | 14/164 [00:10<01:09,  2.16it/s][A
+Loading weights:   9%|▉         | 15/164 [00:13<02:30,  1.01s/it][A
+Loading weights:  16%|█▌        | 26/164 [00:14<00:49,  2.78it/s][A
+Loading weights:  17%|█▋        | 28/164 [00:14<00:46,  2.95it/s][A
+Loading weights:  18%|█▊        | 30/164 [00:15<00:53,  2.53it/s][A
+Loading weights:  20%|█▉        | 32/164 [00:16<00:46,  2.84it/s][A
+Loading weights:  24%|██▍       | 39/164 [00:16<00:26,  4.73it/s][A
+Loading weights:  25%|██▌       | 41/164 [00:16<00:23,  5.16it/s][A
+Loading weights:  26%|██▌       | 42/164 [00:16<00:22,  5.41it/s][A
+Loading weights:  30%|██▉       | 49/164 [00:17<00:13,  8.59it/s][A
+Loading weights:  35%|███▍      | 57/164 [00:20<00:27,  3.82it/s][A
+Loading weights:  52%|█████▏    | 85/164 [00:21<00:08,  9.60it/s][A
+Loading weights:  54%|█████▎    | 88/164 [00:24<00:13,  5.69it/s][A
+Loading weights:  57%|█████▋    | 94/164 [00:29<00:23,  2.98it/s][A
+Loading weights:  73%|███████▎  | 120/164 [00:30<00:06,  6.79it/s][A
+Loading weights:  77%|███████▋  | 126/164 [00:33<00:08,  4.64it/s][A
+Loading weights:  84%|████████▍ | 138/164 [00:36<00:05,  4.62it/s][A
+Loading weights:  90%|█████████ | 148/164 [00:37<00:03,  4.98it/s][A
+Loading weights:  93%|█████████▎| 152/164 [00:39<00:02,  4.10it/s][ALoading weights: 100%|██████████| 164/164 [00:39<00:00,  4.13it/s]
+
+Loading weights:   0%|          | 0/252 [00:00<?, ?it/s][A
+Loading weights:  12%|█▏        | 29/252 [00:00<00:01, 211.41it/s][A
+Loading weights:  33%|███▎      | 82/252 [00:00<00:00, 372.97it/s][A
+Loading weights:  48%|████▊     | 122/252 [00:00<00:00, 344.70it/s][A
+Loading weights:  63%|██████▎   | 158/252 [00:00<00:00, 338.85it/s][A
+Loading weights:  82%|████████▏ | 206/252 [00:00<00:00, 384.59it/s][ALoading weights: 100%|██████████| 252/252 [00:00<00:00, 377.53it/s]
+Map:   0%|          | 0/1 [00:51<?, ? examples/s]Map:   0%|          | 0/1 [00:51<?, ? examples/s]
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/utils/hub.py", line 537, in cached_files
+    hf_hub_download(
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 266, in _inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1047, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1194, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1944, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 807, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 397, in from_pretrained
+    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/configuration_utils.py", line 792, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/configuration_utils.py", line 844, in _get_config_dict
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/utils/hub.py", line 370, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/utils/hub.py", line 620, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/utils/hub.py", line 537, in cached_files
+    hf_hub_download(
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 266, in _inner
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1047, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1194, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1944, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/pair_attack_evaluation_mini.py", line 73, in <module>
+    eval_dataset = evaluate_dataset(responses_dataset, [EVALUATOR])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/evaluate.py", line 761, in evaluate_dataset
+    evaluated_dataset = dataset.map(
+                        ^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 567, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3624, in map
+    for rank, done, content in Dataset._map_single(**unprocessed_kwargs):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3989, in _map_single
+    for i, batch in iter_outputs(shard_iterable):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3942, in iter_outputs
+    yield i, apply_function(example, i, offset=offset)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3863, in apply_function
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/evaluate.py", line 762, in <lambda>
+    lambda x: func(x, **kwargs), batched=True, batch_size=batch_size
+              ^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/evaluate.py", line 476, in strongreject_finetuned
+    tokenizer = AutoTokenizer.from_pretrained(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 811, in from_pretrained
+    config = PreTrainedConfig.from_pretrained(pretrained_model_name_or_path, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/configuration_utils.py", line 742, in from_pretrained
+    config_dict, kwargs = cls.get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/configuration_utils.py", line 792, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/configuration_utils.py", line 844, in _get_config_dict
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/utils/hub.py", line 370, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/transformers/utils/hub.py", line 620, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.

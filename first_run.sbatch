@@ -8,7 +8,8 @@
 #SBATCH --mem=16G
 #SBATCH --cpus-per-task=4
 #SBATCH --threads-per-core=1
-#SBATCH --time=02:00:00
+#SBATCH --time=00:09:00
+#SBATCH --export=ALL
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.out
 
