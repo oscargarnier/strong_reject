@@ -158,9 +158,9 @@ def generate_to_dataset(
             '''
 
             responses = []
-            for x in dataset:
+            for i, x in enumerate(dataset):
                 # Run inference sequentially on each item in the main process
-                print(f"Generating response for prompt: {x[target_column][0]["content"][:100]}",    flush=True)
+                print(f"Generating response for prompt {i+1}/{len(dataset)}")
                 res = generate(x[target_column], model, **kwargs)
                 responses.append(res)
             
