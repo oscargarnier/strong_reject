@@ -11,13 +11,13 @@ from ressources.models import hugging_face_model_adresses
 EVALUATOR = f"strongreject_finetuned"
 victim_model = hugging_face_model_adresses["llama2-7"]
 dataset_file = "data/strong_reject3.csv"
-
+attack = "pap"
 
 # load the StrongREJECT dataset
 df = pd.read_csv(dataset_file)
 forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
-run_dir_notime = os.path.join("results", f"{victim_model.split('/')[-1]}_{dataset_file.split('/')[-1].split('.')[0]}_pair_{EVALUATOR.split('_')[-1]}")
+run_dir_notime = os.path.join("results", f"{victim_model.split('/')[-1]}_{dataset_file.split('/')[-1].split('.')[0]}_{attack}_{EVALUATOR.split('_')[-1]}")
 ## The prior jailbreaks might have been calculated at another time, so we want to load them if they exist, otherwise we will apply the jailbreaks and save them for future use
 jailbreaks_found = False
 for path in os.listdir(run_dir_notime):
@@ -35,7 +35,7 @@ else:
     os.makedirs(run_dir, exist_ok=True)
     print(f"Saving all artifacts to: {run_dir}")
     # apply the new jailbreak
-    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, ["pap"], victim_model=victim_model, max_tokens = 500)
+    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, [attack], victim_model=victim_model, max_tokens = 500)
     jailbroken_dataset.to_pandas().to_csv(
         os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
     )
