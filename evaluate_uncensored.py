@@ -12,7 +12,6 @@ from ressources.models import hugging_face_model_adresses
 from argparse import ArgumentParser
 
 parser = ArgumentParser()
-parser.add_argument("--attack", type=str, default="none", help="The attack to apply to the dataset")
 parser.add_argument("--dataset_file", type=str, default="data/strong_reject3.csv", help="The dataset file to use")
 parser.add_argument("--victim_model", type=str, default="llama2-7", help="The victim model to use")
 parser.add_argument("--evaluator", type=str, default="strongreject_finetuned", help="The evaluator to use")
@@ -23,13 +22,12 @@ EVALUATOR = args.evaluator
 victim_model = "DavidAU/Qwen3.5-9B-Claude-4.6-HighIQ-THINKING-HERETIC-UNCENSORED"
 print(f"Using victim model: {victim_model}")
 dataset_file = args.dataset_file
-attack = args.attack
 
 # load the StrongREJECT dataset
 df = pd.read_csv(dataset_file)
 forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
-run_dir_notime = os.path.join("results", f"{victim_model.split('/')[-1]}_{dataset_file.split('/')[-1].split('.')[0]}_{attack}_{EVALUATOR.split('_')[-1]}")
+run_dir_notime = os.path.join("results", f"uncensored_{dataset_file.split('/')[-1].split('.')[0]}")
 os.makedirs(run_dir_notime, exist_ok=True)
 
 responses_found = False
