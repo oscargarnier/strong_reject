@@ -1,0 +1,12 @@
+Confirming local strong reject use
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/pair_attack_evaluation.py", line 2, in <module>
+    from strong_reject.jailbreaks import apply_jailbreaks_to_dataset, register_jailbreak
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/jailbreaks.py", line 79, in <module>
+    from .evaluate import evaluate
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/evaluate.py", line 109, in <module>
+    from .generate import generate
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/generate.py", line 163
+    print(f"Generating response for prompt: {x[target_column][0]["content"][:100]}",    flush=True)
+                                                                  ^^^^^^^
+SyntaxError: f-string: unmatched '['

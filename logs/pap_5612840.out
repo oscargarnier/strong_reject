@@ -1,0 +1,6 @@
+Confirming local strong reject use
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/pap.py", line 23, in <module>
+    for path in os.listdir(run_dir_notime):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'results/Llama-2-7b-chat-hf_strong_reject3_pap_finetuned'

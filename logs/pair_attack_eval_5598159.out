@@ -1,0 +1,8 @@
+Confirming local strong reject use
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/pair_attack_evaluation.py", line 10, in <module>
+    from ressources.models import hugging_face_model_adresses
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/ressources/models.py", line 1
+    hugging_face_model_adresses =
+                                 ^
+SyntaxError: invalid syntax

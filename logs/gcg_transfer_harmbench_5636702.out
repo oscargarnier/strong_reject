@@ -1,0 +1,66 @@
+num_proc must be <= 3. Reducing num_proc to 3 for dataset of size 3.
+Confirming local strong reject use
+No existing jailbroken prompts found. Applying jailbreak.
+Saving all artifacts to: results/Llama-2-7b-chat-hf_strong_reject3_gcg_transfer_harmbench_finetuned/20261019_112927
+Map (num_proc=3):   0%|          | 0/3 [00:00<?, ? examples/s]Map (num_proc=3):  33%|███▎      | 1/3 [00:00<00:00,  6.35 examples/s]Map (num_proc=3): 100%|██████████| 3/3 [00:00<00:00, 11.14 examples/s]
+Parameter 'function'=<function generate_to_dataset.<locals>.<lambda> at 0x146bdca79e40> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only shown once. Subsequent hashing failures won't be shown.
+==================================================================================================== 
+ Generating responses to the jailbroken prompts using hf:meta-llama/Llama-2-7b-chat-hf 
+ ====================================================================================================
+No existing generations found. Applying generation.
+Confirming the api model branch
+Generating locally: batching used
+Map:   0%|          | 0/3 [00:00<?, ? examples/s]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s][A
+Loading weights:   0%|          | 1/291 [00:47<3:49:40, 47.52s/it][A
+Loading weights:  15%|█▌        | 44/291 [00:48<03:12,  1.28it/s] [A
+Loading weights:  17%|█▋        | 50/291 [00:52<03:01,  1.33it/s][A
+Loading weights:  18%|█▊        | 53/291 [00:52<02:44,  1.45it/s][A
+Loading weights:  20%|█▉        | 58/291 [00:56<02:43,  1.43it/s][A
+Loading weights:  21%|██▏       | 62/291 [00:56<02:12,  1.72it/s][A
+Loading weights:  22%|██▏       | 65/291 [01:00<02:41,  1.40it/s][A
+Loading weights:  24%|██▍       | 71/291 [01:04<01:52,  1.96it/s][A
+Loading weights:  24%|██▍       | 71/291 [01:15<01:52,  1.96it/s][A
+Loading weights:  25%|██▍       | 72/291 [01:15<05:30,  1.51s/it][A
+Loading weights:  31%|███       | 90/291 [01:15<01:49,  1.84it/s][A
+Loading weights:  32%|███▏      | 93/291 [01:16<01:35,  2.08it/s][A
+Loading weights:  32%|███▏      | 93/291 [01:29<01:35,  2.08it/s][A
+Loading weights:  33%|███▎      | 95/291 [01:40<05:52,  1.80s/it][A
+Loading weights:  33%|███▎      | 96/291 [01:40<05:28,  1.68s/it][A
+Loading weights:  43%|████▎     | 125/291 [01:43<01:09,  2.37it/s][A
+Loading weights:  44%|████▍     | 129/291 [01:46<01:28,  1.83it/s][A
+Loading weights:  46%|████▋     | 135/291 [01:46<01:07,  2.31it/s][A
+Loading weights:  48%|████▊     | 139/291 [01:54<01:43,  1.47it/s][A
+Loading weights:  57%|█████▋    | 166/291 [01:54<00:32,  3.83it/s][A
+Loading weights:  59%|█████▉    | 173/291 [02:11<01:18,  1.50it/s][A
+Loading weights:  77%|███████▋  | 225/291 [02:12<00:15,  4.27it/s][A
+Loading weights:  80%|███████▉  | 232/291 [02:18<00:18,  3.21it/s][A
+Loading weights:  81%|████████▏ | 237/291 [02:21<00:18,  2.99it/s][A
+Loading weights:  83%|████████▎ | 241/291 [02:26<00:21,  2.31it/s][A
+Loading weights:  85%|████████▍ | 247/291 [02:32<00:24,  1.83it/s][A
+Loading weights:  88%|████████▊ | 256/291 [02:39<00:19,  1.77it/s][A
+Loading weights:  89%|████████▊ | 258/291 [02:39<00:18,  1.77it/s][A
+Loading weights:  91%|█████████ | 265/291 [02:40<00:11,  2.25it/s][A
+Loading weights:  91%|█████████▏| 266/291 [02:42<00:13,  1.79it/s][A
+Loading weights:  92%|█████████▏| 268/291 [02:46<00:17,  1.33it/s][A
+Loading weights:  96%|█████████▌| 278/291 [02:47<00:05,  2.49it/s][A
+Loading weights:  96%|█████████▌| 280/291 [02:52<00:07,  1.56it/s][A
+Loading weights:  97%|█████████▋| 281/291 [02:52<00:06,  1.58it/s][A
+Loading weights:  99%|█████████▊| 287/291 [02:53<00:01,  2.32it/s][A
+Loading weights:  99%|█████████▉| 288/291 [02:53<00:01,  2.32it/s][ALoading weights: 100%|██████████| 291/291 [02:53<00:00,  1.67it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer LlamaTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+Map: 100%|██████████| 3/3 [04:44<00:00, 94.98s/ examples]Map: 100%|██████████| 3/3 [04:44<00:00, 94.99s/ examples]
+Generating response for prompt 1/3
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 2/3
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 3/3
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/gcg_transfer_harmbench.py", line 51, in <module>
+    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/generate.py", line 203, in generate_to_dataset
+    "model", len(generated_dataset) * [model_name]
+                                       ^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'model_name' where it is not associated with a value

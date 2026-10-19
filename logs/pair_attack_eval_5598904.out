@@ -1,0 +1,16 @@
+Confirming local strong reject use
+Loading existing jailbroken prompts from results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627/jailbroken_prompts.csv
+Saving all artifacts to: results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627
+==================================================================================================== 
+ Generating responses to the jailbroken prompts using hf:meta-llama/Llama-2-7b-chat-hf 
+ ====================================================================================================
+No existing generations found. Applying generation.
+Confirming the api model branch
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/pair_attack_evaluation.py", line 51, in <module>
+    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/generate.py", line 163, in generate_to_dataset
+    print(f"Generating response for prompt: {x[target_column][0]['content'][:100]}",    flush=True)
+                                             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
