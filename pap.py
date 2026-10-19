@@ -18,6 +18,7 @@ df = pd.read_csv(dataset_file)
 forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
 run_dir_notime = os.path.join("results", f"{victim_model.split('/')[-1]}_{dataset_file.split('/')[-1].split('.')[0]}_{attack}_{EVALUATOR.split('_')[-1]}")
+os.makedirs(run_dir_notime, exist_ok=True)
 ## The prior jailbreaks might have been calculated at another time, so we want to load them if they exist, otherwise we will apply the jailbreaks and save them for future use
 jailbreaks_found = False
 for path in os.listdir(run_dir_notime):
