@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=gcg_transfer_harmbench
+#SBATCH --job-name=pap
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
@@ -26,4 +26,8 @@ export LITELLM_LOCAL_MODEL_COST_MAP="True"
 export AMD_SERIALIZE_KERNEL=3 
 export HIP_LAUNCH_BLOCKING=1
 
-python gcg_transfer_harmbench.py
+python run_attacks_and_evaluation.py \
+    --attack pap \
+    --dataset_file data/strong_reject100.csv \
+    --victim_model llama2-7 \
+    --evaluator strongreject_finetuned
