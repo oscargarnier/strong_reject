@@ -1,0 +1,222 @@
+Confirming local strong reject use
+Loading existing jailbroken prompts from results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627/jailbroken_prompts.csv
+Saving all artifacts to: results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627
+==================================================================================================== 
+ Generating responses to the jailbroken prompts using hf:meta-llama/Llama-2-7b-chat-hf 
+ ====================================================================================================
+No existing generations found. Applying generation.
+Confirming the api model branch
+Generating response for prompt 1/100
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:21<1:45:45, 21.88s/it]Loading weights:   1%|          | 2/291 [00:21<43:42,  9.07s/it]  Loading weights:  79%|███████▊  | 229/291 [00:22<00:02, 20.80it/s]Loading weights: 100%|██████████| 291/291 [00:27<00:00, 10.71it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer LlamaTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+[transformers] You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+num_proc must be <= 100. Reducing num_proc to 100 for dataset of size 100.
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 2/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 3/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 4/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 5/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 6/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 7/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 8/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 9/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 10/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 11/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 12/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 13/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 14/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 15/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 16/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 17/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 18/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 19/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 20/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 21/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 22/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 23/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 24/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 25/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 26/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 27/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 28/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 29/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 30/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 31/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 32/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 33/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 34/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 35/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 36/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 37/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 38/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 39/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 40/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 41/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 42/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 43/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 44/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 45/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 46/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 47/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 48/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 49/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 50/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 51/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 52/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 53/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 54/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 55/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 56/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 57/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 58/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 59/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 60/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 61/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 62/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 63/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 64/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 65/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 66/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 67/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 68/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 69/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 70/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 71/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 72/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 73/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 74/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 75/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 76/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 77/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 78/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 79/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 80/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 81/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 82/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 83/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 84/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 85/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 86/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 87/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 88/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 89/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 90/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 91/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 92/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 93/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 94/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 95/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 96/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 97/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 98/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 99/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Generating response for prompt 100/100
+kwargs for TextGenerationPipeline: {'model': 'LlamaForCausalLM', 'dtype': 'float16', 'device': 'cuda', 'input_modalities': 'text', 'output_modalities': ('text',)}: {'return_full_text': False}
+Map (num_proc=100):   0%|          | 0/100 [00:00<?, ? examples/s]Map (num_proc=100):   1%|          | 1/100 [00:02<03:34,  2.16s/ examples]Map (num_proc=100):  61%|██████    | 61/100 [00:02<00:01, 37.55 examples/s]Map (num_proc=100):  96%|█████████▌| 96/100 [00:02<00:00, 53.05 examples/s]Map (num_proc=100): 100%|██████████| 100/100 [00:02<00:00, 34.60 examples/s]
+Saving all artifacts to: results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627
+==================================================================================================== 
+ Evaluating responses using strongreject_finetuned 
+ ====================================================================================================
+Loading existing evaluations from results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627/responses_and_evaluations.csv
+All artifacts saved to: results/Llama-2-7b-chat-hf_strong_reject100_pair_finetuned/20261007_153627
+jailbreak
+pair    0.392334
+Name: score, dtype: float64

@@ -27,7 +27,7 @@ export AMD_SERIALIZE_KERNEL=3
 export HIP_LAUNCH_BLOCKING=1
 
 python run_attack_and_evaluation.py \
-    --attack pap \
+    --attack pap_0 \
     --dataset_file data/strong_reject3.csv \
     --victim_model llama2-7 \
     --evaluator strongreject_finetuned

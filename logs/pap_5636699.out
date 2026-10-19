@@ -1,0 +1,49 @@
+num_proc must be <= 3. Reducing num_proc to 3 for dataset of size 3.
+Confirming local strong reject use
+No existing jailbroken prompts found. Applying jailbreak.
+Saving all artifacts to: results/Llama-2-7b-chat-hf_strong_reject3_pap_finetuned/20261019_112856
+Map (num_proc=3):   0%|          | 0/3 [00:00<?, ? examples/s]Map (num_proc=3):   0%|          | 0/3 [00:00<?, ? examples/s]
+multiprocess.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/multiprocess/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/utils/py_utils.py", line 585, in _write_generator_to_queue
+    for i, result in enumerate(func(**kwargs)):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3964, in _map_single
+    for i, example in iter_outputs(shard_iterable):
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3942, in iter_outputs
+    yield i, apply_function(example, i, offset=offset)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3863, in apply_function
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/jailbreaks.py", line 862, in <lambda>
+    registered_jailbreaks[jailbreak](x["forbidden_prompt"], **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'pap'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/pap.py", line 39, in <module>
+    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, [attack], victim_model=victim_model, max_tokens = 500)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/strong_reject/strong_reject/jailbreaks.py", line 859, in apply_jailbreaks_to_dataset
+    jailbroken_dataset = dataset.map(
+                         ^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 567, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3615, in map
+    for rank, done, content in iflatmap_unordered(
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/utils/py_utils.py", line 624, in iflatmap_unordered
+    [async_result.get(timeout=0.05) for async_result in async_results]
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/datasets/utils/py_utils.py", line 624, in <listcomp>
+    [async_result.get(timeout=0.05) for async_result in async_results]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lus/work/CT10/c2016159/ogarnier/envs/strong_env/lib/python3.11/site-packages/multiprocess/pool.py", line 774, in get
+    raise self._value
+KeyError: 'pap'
