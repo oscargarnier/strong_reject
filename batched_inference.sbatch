@@ -8,7 +8,7 @@
 #SBATCH --mem=16G
 #SBATCH --cpus-per-task=4
 #SBATCH --threads-per-core=1
-#SBATCH --time=00:09:00
+#SBATCH --time=03:00:00
 #SBATCH --export=ALL
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.out
@@ -25,4 +25,5 @@ export LITELLM_LOCAL_MODEL_COST_MAP="True"
 #Check for GPU visibility
 export AMD_SERIALIZE_KERNEL=3 
 export HIP_LAUNCH_BLOCKING=1
-python pair_attack_evaluation.py
+python run_attack_and_evaluation.py \
+
