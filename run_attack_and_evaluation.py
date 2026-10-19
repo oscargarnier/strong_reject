@@ -21,6 +21,7 @@ args = parser.parse_args()
 
 EVALUATOR = args.evaluator
 victim_model = hugging_face_model_adresses[args.victim_model]
+print(f"Using victim model: {victim_model}")
 dataset_file = args.dataset_file
 attack = args.attack
 
@@ -60,6 +61,7 @@ if os.path.exists(os.path.join(run_dir, "responses.csv")):
     responses_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "responses.csv")))
 else:
     print("No existing generations found. Applying generation.")
+    print(f)
     responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1)
     responses_dataset.to_pandas().to_csv(os.path.join(run_dir, "responses.csv"), index=False)
     print(f"Saving all artifacts to: {run_dir}")
