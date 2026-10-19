@@ -8,7 +8,7 @@
 #SBATCH --mem=16G
 #SBATCH --cpus-per-task=4
 #SBATCH --threads-per-core=1
-#SBATCH --time=03:00:00
+#SBATCH --time=00:09:00
 #SBATCH --export=ALL
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.out
@@ -27,7 +27,7 @@ export AMD_SERIALIZE_KERNEL=3
 export HIP_LAUNCH_BLOCKING=1
 
 python run_attack_and_evaluation.py \
-    --attack pap_0 \
+    --attack pap_evidence_based_persuasion \
     --dataset_file data/strong_reject3.csv \
     --victim_model llama2-7 \
     --evaluator strongreject_finetuned
