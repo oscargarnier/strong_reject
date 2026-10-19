@@ -26,4 +26,9 @@ export LITELLM_LOCAL_MODEL_COST_MAP="True"
 export AMD_SERIALIZE_KERNEL=3 
 export HIP_LAUNCH_BLOCKING=1
 python run_attack_and_evaluation.py \
+    --attack pair \
+    --dataset_file data/strong_reject3.csv \
+    --victim_model llama2-7 \
+    --evaluator strongreject_finetuned
+
 
