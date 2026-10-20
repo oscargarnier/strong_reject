@@ -13,13 +13,13 @@ from argparse import ArgumentParser
 
 parser = ArgumentParser()
 parser.add_argument("--dataset_file", type=str, default="data/strong_reject3.csv", help="The dataset file to use")
-parser.add_argument("--victim_model", type=str, default="llama2-7", help="The victim model to use")
+parser.add_argument("--victim_model", type=str, default="qwen_uncensored", help="The victim model to use")
 parser.add_argument("--evaluator", type=str, default="strongreject_finetuned", help="The evaluator to use")
 args = parser.parse_args()
 
 
 EVALUATOR = args.evaluator
-victim_model = "DavidAU/Qwen3.5-9B-Claude-4.6-HighIQ-THINKING-HERETIC-UNCENSORED"
+victim_model = hugging_face_model_adresses[args.victim_model]
 print(f"Using victim model: {victim_model}")
 dataset_file = args.dataset_file
 
