@@ -162,6 +162,7 @@ def generate_to_dataset(
 
             generated_dataset = dataset.add_column("response", responses)
         else:
+            model_name = model
             print("Confirming the api model branch")
             if model.startswith("hf:"):
                 print(f"Generating locally: batching used")
@@ -174,7 +175,6 @@ def generate_to_dataset(
                     batch_size=batch_size,
                 )
             else:
-                model_name = model
                 # API: keep your original multiprocessing path as it was
                 print(f"Generating via API: multiprocessing used with {num_processes} processes")
                 generated_dataset = dataset.map(
