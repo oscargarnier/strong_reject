@@ -4,4 +4,5 @@ hugging_face_model_adresses = \
     "vicuna13": "hf:lmsys/vicuna-13b-v1.5",
     "llama2-7": "hf:meta-llama/Llama-2-7b-chat-hf",
     "llama2-13": "hf:meta-llama/Llama-2-13b-chat-hf",
+    "qwen_uncensored": "hf:DavidAU/Qwen3.5-9B-Claude-4.6-HighIQ-THINKING-HERETIC-UNCENSORED",
 }
