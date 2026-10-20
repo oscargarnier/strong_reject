@@ -30,5 +30,5 @@ python run_attack_and_evaluation.py \
     --attack gcg_transfer_harmbench \
     --dataset_file data/strong_reject3.csv \
     --victim_model llama2-7 \
-    --evaluator harmbench_finetuned
+    --evaluator strongreject_finetuned 
 
