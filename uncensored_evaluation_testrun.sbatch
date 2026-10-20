@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=gcg_transfer_harmbench_testrun
+#SBATCH --job-name=uncensored_evaluation
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
@@ -26,7 +26,7 @@ export LITELLM_LOCAL_MODEL_COST_MAP="True"
 export AMD_SERIALIZE_KERNEL=3 
 export HIP_LAUNCH_BLOCKING=1
 
-python evaluate_uncensored.py \
+python uncensored_evaluation.py \
     --dataset_file data/strong_reject3.csv \
     --evaluator harmbench_finetuned
 
