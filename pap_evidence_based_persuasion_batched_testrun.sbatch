@@ -1,14 +1,14 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=pap
+#SBATCH --job-name=pap_batched_100
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16G
 #SBATCH --cpus-per-task=4
 #SBATCH --threads-per-core=1
-#SBATCH --time=00:09:00
+#SBATCH --time=02:00:00
 #SBATCH --export=ALL
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.out
@@ -28,6 +28,6 @@ export HIP_LAUNCH_BLOCKING=1
 
 python run_attack_and_evaluation.py \
     --attack pap_evidence_based_persuasion \
-    --dataset_file data/strong_reject3.csv \
+    --dataset_file data/strong_reject100.csv \
     --victim_model llama2-7 \
     --evaluator strongreject_finetuned
