@@ -174,6 +174,7 @@ def generate_to_dataset(
                     batch_size=batch_size,
                 )
             else:
+                model_name = model
                 # API: keep your original multiprocessing path as it was
                 print(f"Generating via API: multiprocessing used with {num_processes} processes")
                 generated_dataset = dataset.map(
