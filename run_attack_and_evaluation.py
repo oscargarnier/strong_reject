@@ -11,6 +11,9 @@ from ressources.models import hugging_face_model_adresses
 
 from argparse import ArgumentParser
 
+from dotenv import load_dotenv
+load_dotenv("/lus/home/CT10/c2016159/ogarnier/strong_reject/.env")
+
 parser = ArgumentParser()
 parser.add_argument("--attack", type=str, default="none", help="The attack to apply to the dataset")
 parser.add_argument("--dataset_file", type=str, default="data/strong_reject3.csv", help="The dataset file to use")
