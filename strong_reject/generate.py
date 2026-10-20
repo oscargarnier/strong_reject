@@ -114,7 +114,7 @@ def generate_batch(prompts, model, system_prompt=None, batch_size=16, **kwargs):
     assert isinstance(model, str) and model.startswith("hf:")
     pipe = load_model(model[3:])                 # cached, loads once
     pipe.tokenizer.padding_side = "left"         # required for batched decoder-only generation
-
+    print(f"Recieving batched promts of size {len(prompts)}")
     messages = [convert_to_messages(p, system_prompt=system_prompt) for p in prompts]
 
     kwargs.setdefault("return_full_text", False)
@@ -165,7 +165,7 @@ def generate_to_dataset(
             model_name = model
             print("Confirming the api model branch")
             if model.startswith("hf:"):
-                print(f"Generating locally: batching used")
+                print(f"Generating locally: batching used. Batch size: {batch_size}")
                 # local: single process, one cached model, batched on the GPU
                 generated_dataset = dataset.map(
                     lambda batch: {
