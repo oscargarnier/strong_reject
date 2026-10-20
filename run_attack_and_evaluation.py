@@ -84,4 +84,6 @@ summary = eval_df.groupby("jailbreak")["score"].mean()
 print(f"All artifacts saved to: {run_dir}")
 print(summary)
 
+## For information
+### registered jailbreaks: ['auto_payload_splitting', 'auto_obfuscation', 'rot_13', 'disemvowel', 'pair', 'pap_evidence_based_persuasion', 'pap_expert_endorsement', 'pap_misrepresentation', 'pap_authority_endorsement', 'pap_logical_appeal', 'translation_hmong', 'translation_scotts_gaelic', 'translation_guarani', 'translation_zulu', 'gcg_transfer_harmbench', 'gcg_transfer_universal_attacks', 'combination_3', 'combination_2', 'few_shot_json', 'dev_mode_v2', 'dev_mode_with_rant', 'wikipedia_with_title', 'distractors', 'wikipedia', 'style_injection_json', 'style_injection_short', 'refusal_suppression', 'prefix_injection', 'distractors_negated', 'poems', 'base64', 'base64_raw', 'base64_input_only', 'base64_output_only', 'none', 'evil_confidant', 'aim', 'bon', 'renellm']
 
