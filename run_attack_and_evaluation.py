@@ -12,7 +12,13 @@ from ressources.models import hugging_face_model_adresses
 from argparse import ArgumentParser
 
 from dotenv import load_dotenv
-load_dotenv("/lus/home/CT10/c2016159/ogarnier/strong_reject/.env")
+loaded = load_dotenv("/lus/home/CT10/c2016159/ogarnier/strong_reject/.env")
+print("dotenv file loaded:", loaded)
+
+key = os.getenv("OPENAI_API_KEY")
+print("key set:", key is not None)
+if key:
+    print("length:", len(key), "| prefix:", key[:3] + "..." + key[-2:])
 
 parser = ArgumentParser()
 parser.add_argument("--attack", type=str, default="none", help="The attack to apply to the dataset")
