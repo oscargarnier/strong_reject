@@ -17,14 +17,9 @@
 # Load your environment (adjust to your cluster)
 source $WORKDIR/envs/strong_env/bin/activate
 
-export HF_HOME=$WORKDIR/hf_cache
-export HF_HUB_OFFLINE=1
-export HF_HUB_VERBOSITY=debug
-export TRANSFORMERS_OFFLINE=1
-export LITELLM_LOCAL_MODEL_COST_MAP="True"
+export HF_HOME=$WORKDIR/hf_cache HF_HUB_OFFLINE=1 HF_HUB_VERBOSITY=debug TRANSFORMERS_OFFLINE=1 LITELLM_LOCAL_MODEL_COST_MAP="True"
 #Check for GPU visibility
-export AMD_SERIALIZE_KERNEL=3 
-export HIP_LAUNCH_BLOCKING=1
+export AMD_SERIALIZE_KERNEL=3 HIP_LAUNCH_BLOCKING=1
 
 python run_attack_and_evaluation.py \
     --attack none \
