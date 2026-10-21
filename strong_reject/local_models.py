@@ -75,12 +75,9 @@ def load_model(
 
     if chat_template is not None:
         tok.chat_template = chat_template
-        print(f"Using custom chat template for {name}")
     elif tok.chat_template is None:
-        print(f"Resorting to default chat template")
         for key, template in DEFAULT_TEMPLATES.items():
             if key in name.lower():
                 tok.chat_template = template
                 break
-    print(f"Using chat template for {name}: {tok.chat_template}")
     return pipe
