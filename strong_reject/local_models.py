@@ -15,6 +15,7 @@ VICUNA_TEMPLATE = (
     "{% endif %}{% endfor %}"
     "{% if add_generation_prompt %}{{ 'ASSISTANT:' }}{% endif %}"
 )
+
 LLAMA2_TEMPLATE = (
     "{% if messages[0]['role'] == 'system' %}"
     "{% set system_message = messages[0]['content'] %}"
@@ -74,6 +75,7 @@ def load_model(
 
     if chat_template is not None:
         tok.chat_template = chat_template
+        print(f"Using custom chat template for {name}")
     elif tok.chat_template is None:
         for key, template in DEFAULT_TEMPLATES.items():
             if key in name.lower():
