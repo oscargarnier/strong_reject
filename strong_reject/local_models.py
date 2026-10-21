@@ -82,4 +82,5 @@ def load_model(
             if key in name.lower():
                 tok.chat_template = template
                 break
+    print(f"Using chat template for {name}: {tok.chat_template}")
     return pipe
