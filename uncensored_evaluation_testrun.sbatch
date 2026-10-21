@@ -30,5 +30,5 @@ python run_attack_and_evaluation.py \
     --attack none \
     --dataset_file data/strong_reject3.csv \
     --victim_model qwen_uncensored \
-    --evaluator harmbench_finetuned
+    --evaluator strongreject_finetuned
 
