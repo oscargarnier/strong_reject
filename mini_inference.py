@@ -2,7 +2,7 @@ from transformers import pipeline
 
 pipe = pipeline(
     "text-generation",
-    model="meta-llama/Llama-2-7b-hf",
+    model="hf:DavidAU/Qwen3.5-9B-Claude-4.6-HighIQ-THINKING-HERETIC-UNCENSORED",
     device_map="auto",
 )
 
