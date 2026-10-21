@@ -10,6 +10,8 @@ from datasets import Dataset
 from ressources.models import hugging_face_model_adresses
 
 from argparse import ArgumentParser
+import torch
+torch.backends.cudnn.enabled = False
 
 parser = ArgumentParser()
 parser.add_argument("--dataset_file", type=str, default="data/strong_reject3.csv", help="The dataset file to use")
