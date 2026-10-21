@@ -10,7 +10,8 @@ from datasets import Dataset
 from ressources.models import hugging_face_model_adresses
 
 from argparse import ArgumentParser
-
+import torch
+torch.backends.cudnn.enabled = False
 from dotenv import load_dotenv
 loaded = load_dotenv("/lus/home/CT10/c2016159/ogarnier/strong_reject/.env")
 print("dotenv file loaded:", loaded)
