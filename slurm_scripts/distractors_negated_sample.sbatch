@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=gcg_transfer_harmbench
+#SBATCH --job-name=distractors_negated
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
@@ -27,8 +27,8 @@ export AMD_SERIALIZE_KERNEL=3
 export HIP_LAUNCH_BLOCKING=1
 
 python run_attacks_and_evaluation.py \
-    --attack gcg_transfer_harmbench \
-    --dataset_file data/strong_reject100.csv \
+    --attack distractors_negated \
+    --dataset_file data/strong_reject10.csv \
     --victim_model llama2-7 \
     --evaluator harmbench_finetuned
 
