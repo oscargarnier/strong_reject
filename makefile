@@ -1,7 +1,7 @@
 alloc:
 	salloc --account=c2016159 \
        --constraint=MI250 \
-       --job-name=gcg_transfer_harmbench \
+       --job-name=dynamic_allocation_qwen \
        --ntasks=1 \
        --nodes=1 \
        --gres=gpu:1 \
