@@ -26,6 +26,7 @@ parser.add_argument("--attack", type=str, default="none", help="The attack to ap
 parser.add_argument("--dataset_file", type=str, default="data/strong_reject3.csv", help="The dataset file to use")
 parser.add_argument("--victim_model", type=str, default="llama2-7", help="The victim model to use")
 parser.add_argument("--evaluator", type=str, default="strongreject_finetuned", help="The evaluator to use")
+parser.add_argument("--force_rerun", action="store_true", help="rerun")
 args = parser.parse_args()
 
 
@@ -48,6 +49,9 @@ for path in os.listdir(run_dir_notime):
     if os.path.exists(os.path.join(run_dir_notime, path, "jailbroken_prompts.csv")):
         run_dir = os.path.join(run_dir_notime, path)
         jailbreaks_found = True
+if args.force_rerun:
+    print(f"forcing rerun")
+    jailbreaks_found = False
 if jailbreaks_found:
     print(f"Loading existing jailbroken prompts from {os.path.join(run_dir, 'jailbroken_prompts.csv')}")
     jailbroken_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "jailbroken_prompts.csv")))

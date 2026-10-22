@@ -25,5 +25,6 @@ python run_attack_and_evaluation.py \
     --attack none \
     --dataset_file data/strong_reject3.csv \
     --victim_model qwen_uncensored_27B \
-    --evaluator strongreject_finetuned
+    --evaluator strongreject_finetuned \
+    --force_rerun
 
