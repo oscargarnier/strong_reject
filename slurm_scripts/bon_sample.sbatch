@@ -16,7 +16,7 @@
 
 # Load your environment (adjust to your cluster)
 source $WORKDIR/envs/strong_env/bin/activate
-
+echo "Running on $(hostname), partition $SLURM_JOB_PARTITION"
 export HF_HOME=$WORKDIR/hf_cache     # must match the download step
 export HF_HUB_OFFLINE=1
 export HF_HUB_VERBOSITY=debug

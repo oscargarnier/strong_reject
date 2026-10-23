@@ -5,5 +5,5 @@ hugging_face_model_adresses = \
     "llama2-7": "hf:meta-llama/Llama-2-7b-chat-hf",
     "llama2-13": "hf:meta-llama/Llama-2-13b-chat-hf",
     "qwen_uncensored": "hf:DavidAU/Qwen3.5-9B-Claude-4.6-HighIQ-THINKING-HERETIC-UNCENSORED",
-    "qwen_uncensored_27b": "hf:orcarouter/Qwen3.8-27B-Uncensored-FP8"
+    "qwen_uncensored_27B": "hf:orcarouter/Qwen3.8-27B-Uncensored-FP8"
 }
