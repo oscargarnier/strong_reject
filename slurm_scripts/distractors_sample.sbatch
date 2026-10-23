@@ -26,7 +26,7 @@ export LITELLM_LOCAL_MODEL_COST_MAP="True"
 export AMD_SERIALIZE_KERNEL=3 
 export HIP_LAUNCH_BLOCKING=1
 
-python run_attacks_and_evaluation.py \
+python run_attack_and_evaluation.py \
     --attack distractors \
     --dataset_file data/strong_reject10.csv \
     --victim_model llama2-7 \
