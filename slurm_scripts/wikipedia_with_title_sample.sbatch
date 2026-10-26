@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=wikipedia_with_title
+#SBATCH --job-name=wikipedia_with_title_sample
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1

@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=dev_mode_with_rant
+#SBATCH --job-name=dev_mode_with_rant_sample
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1

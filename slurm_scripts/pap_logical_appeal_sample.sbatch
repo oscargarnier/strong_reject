@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=pap_logical_appeal
+#SBATCH --job-name=pap_logical_appeal_sample
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
