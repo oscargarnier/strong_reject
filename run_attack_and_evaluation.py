@@ -71,7 +71,7 @@ if os.path.exists(os.path.join(run_dir, "responses.csv")):
     responses_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "responses.csv")))
 else:
     print("No existing generations found. Applying generation.")
-    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1)
+    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1, max_tokens=500)
     responses_dataset.to_pandas().to_csv(os.path.join(run_dir, "responses.csv"), index=False)
     print(f"Saving all artifacts to: {run_dir}")
 
@@ -95,5 +95,4 @@ print(f"All artifacts saved to: {run_dir}")
 print(summary)
 
 ## For information
-### registered jailbreaks: ['auto_payload_splitting', 'auto_obfuscation', 'rot_13', 'disemvowel', 'pair', 'pap_evidence_based_persuasion', 'pap_expert_endorsement', 'pap_misrepresentation', 'pap_authority_endorsement', 'pap_logical_appeal', 'translation_hmong', 'translation_scotts_gaelic', 'translation_guarani', 'translation_zulu', 'gcg_transfer_harmbench', 'gcg_transfer_universal_attacks', 'combination_3', 'combination_2', 'few_shot_json', 'dev_mode_v2', 'dev_mode_with_rant', 'wikipedia_with_title', 'distractors', 'wikipedia', 'style_injection_json', 'style_injection_short', 'refusal_suppression', 'prefix_injection', 'distractors_negated', 'poems', 'base64', 'base64_raw', 'base64_input_only', 'base64_output_only', 'none', 'evil_confidant', 'aim', 'bon', 'renellm']
 
