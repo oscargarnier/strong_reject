@@ -26,5 +26,5 @@ python run_attack_and_evaluation.py \
     --dataset_file data/strong_reject10.csv \
     --victim_model qwen_uncensored_14B \
     --evaluator strongreject_finetuned \
-    --max_tokens 1000
-
+    --max_tokens 1000 \
+    --full_reset
