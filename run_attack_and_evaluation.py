@@ -58,7 +58,7 @@ else:
     os.makedirs(run_dir, exist_ok=True)
     print(f"Saving all artifacts to: {run_dir}")
     # apply the new jailbreak
-    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, [attack], victim_model=victim_model, max_tokens = 500)
+    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, [attack], victim_model=victim_model, max_tokens = 500) ## hardcoded because attacks iterate
     jailbroken_dataset.to_pandas().to_csv(
         os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
     )
@@ -71,7 +71,7 @@ if os.path.exists(os.path.join(run_dir, "responses.csv")):
     responses_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "responses.csv")))
 else:
     print("No existing generations found. Applying generation.")
-    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1, max_tokens=500)
+    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1, max_tokens=args.max_tokens)
     responses_dataset.to_pandas().to_csv(os.path.join(run_dir, "responses.csv"), index=False)
     print(f"Saving all artifacts to: {run_dir}")
 
