@@ -854,6 +854,7 @@ def apply_jailbreaks_to_dataset(dataset: Dataset, jailbreaks: list[str], **kwarg
     Returns:
         Dataset: Dataset with jailbroken prompts.
     """
+    print(f'at this stage kwards is {kwargs}')
     jailbroken_datasets = []
     for jailbreak in jailbreaks:
         jailbroken_dataset = dataset.map(
