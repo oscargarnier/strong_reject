@@ -30,7 +30,7 @@ export AMD_SERIALIZE_KERNEL=3 HIP_LAUNCH_BLOCKING=1
 python run_attack_and_evaluation.py \
     --attack none \
     --dataset_file data/strong_reject10.csv \
-    --victim_model qwen_uncensored_14B \
+    --victim_model deepseek_r1 \
     --evaluator strongreject_finetuned \
     --max_tokens 1000 \
     --full_reset
