@@ -14,6 +14,8 @@
 #SBATCH --error=logs/%x_%j.out
 
 
+echo $HIP_VISIBLE_DEVICES
+echo $ROCR_VISIBLE_DEVICES
 # Load your environment (adjust to your cluster)
 source $WORKDIR/envs/strong_env/bin/activate
 
