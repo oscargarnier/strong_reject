@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=uncensored_evaluation
+#SBATCH --job-name=vanilla_evaluation_3
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
@@ -13,12 +13,6 @@
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.out
 
-
-echo "Host:                 $(hostname)"
-echo "Job ID:               $SLURM_JOB_ID"
-echo "Slurm GPU allocation: ${SLURM_JOB_GPUS:-none}"
-echo "CUDA_VISIBLE_DEVICES: ${CUDA_VISIBLE_DEVICES:-unset}"
-srun bash -c 'echo "step GPUs: ${SLURM_STEP_GPUS:-none}"; echo "CVD: ${CUDA_VISIBLE_DEVICES:-unset}"; nvidia-smi -L'
 
 # Load your environment (adjust to your cluster)
 source $WORKDIR/envs/strong_env/bin/activate
