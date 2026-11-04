@@ -14,12 +14,18 @@ import torch
 torch.backends.cudnn.enabled = False
 from dotenv import load_dotenv
 loaded = load_dotenv("/lus/home/CT10/c2016159/ogarnier/strong_reject/.env")
-print("dotenv file loaded:", loaded)
 
+
+## Checking openAI key. For now is correct
+'''
+print("dotenv file loaded:", loaded)
 key = os.getenv("OPENAI_API_KEY")
 print("key set:", key is not None)
 if key:
     print("length:", len(key), "| prefix:", key[:3] + "..." + key[-2:])
+'''
+
+
 
 parser = ArgumentParser()
 parser.add_argument("--attack", type=str, default="none", help="The attack to apply to the dataset")

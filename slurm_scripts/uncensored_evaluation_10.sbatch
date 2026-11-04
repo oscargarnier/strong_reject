@@ -14,6 +14,12 @@
 #SBATCH --error=logs/%x_%j.out
 
 
+echo "Host:                 $(hostname)"
+echo "Job ID:               $SLURM_JOB_ID"
+echo "Slurm GPU allocation: ${SLURM_JOB_GPUS:-none}"
+echo "CUDA_VISIBLE_DEVICES: ${CUDA_VISIBLE_DEVICES:-unset}"
+
+
 # Load your environment (adjust to your cluster)
 source $WORKDIR/envs/strong_env/bin/activate
 
