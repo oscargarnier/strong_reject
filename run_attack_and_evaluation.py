@@ -4,6 +4,7 @@ from strong_reject.generate import generate_to_dataset
 from strong_reject.evaluate import evaluate_dataset
 
 import os
+import subprocess
 from datetime import datetime
 import pandas as pd
 from datasets import Dataset
@@ -14,6 +15,11 @@ import torch
 torch.backends.cudnn.enabled = False
 from dotenv import load_dotenv
 loaded = load_dotenv("/lus/home/CT10/c2016159/ogarnier/strong_reject/.env")
+
+print("Host:", os.uname().nodename)
+print("Job ID:", os.environ.get("SLURM_JOB_ID", "not in Slurm"))
+print("Slurm GPU allocation:", os.environ.get("SLURM_JOB_GPUS", "none"))
+print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES", "unset"))
 
 
 ## Checking openAI key. For now is correct
