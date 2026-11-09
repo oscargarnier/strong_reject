@@ -30,5 +30,5 @@ python run_attack_and_evaluation.py \
     --attack sample_attack \
     --dataset_file sample_dataset \
     --victim_model sample_model \
-    --evaluator harmbench_finetuned
+    --evaluator strongreject_finetuned 
 

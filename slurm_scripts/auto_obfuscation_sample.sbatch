@@ -30,5 +30,5 @@ python run_attack_and_evaluation.py \
     --attack auto_obfuscation \
     --dataset_file data/strong_reject10.csv \
     --victim_model llama2-7 \
-    --evaluator harmbench_finetuned
+    --evaluator strongreject_finetuned 
 
