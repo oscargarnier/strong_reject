@@ -30,5 +30,5 @@ python run_attack_and_evaluation.py \
     --attack rot_13 \
     --dataset_file data/strong_reject10.csv \
     --victim_model llama2-7 \
-    --evaluator strongreject_finetuned 
+    --evaluator strongreject_finetuned
 
