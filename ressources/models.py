@@ -8,5 +8,9 @@ hugging_face_model_adresses = \
     "qwen_uncensored_27B": "hf:orcarouter/Qwen3.8-27B-Uncensored-FP8",
     "qwen_uncensored_14B": "hf:nicoboss/Qwen3-14B-Uncensored",
     "dolphin_qwen_7B": "hf:dphn/dolphin-2.9.2-qwen2-7b",
-    "deepseek_r1": "hf:nicoboss/DeepSeek-R1-Distill-Qwen-7B-Uncensored"
+    "deepseek_r1": "hf:nicoboss/DeepSeek-R1-Distill-Qwen-7B-Uncensored",
+    "llama2_uncensored": "hf:georgesung/llama2-7b-chat-uncensored",
+    "llama3_uncensored": "hf:Orenguteng/Llama-3-8B-Lexi-Uncensored",
+    "llama3.1_uncensored": "hf:Orenguteng/Llama-3.1-8B-Lexi-Uncensored",
+    "tiger_gemma": "hf:TheDrummer/Tiger-Gemma-9B-v1"
 }
