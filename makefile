@@ -21,3 +21,6 @@ small_alloc:
        --cpus-per-task=4 \
        --threads-per-core=1 \
        --time=01:00:00
+
+launch_attacks:
+	while read -r atk; do sbatch slurm_scripts/$${atk}_sample.sbatch; done < slurm_scripts/current_attacks.txt

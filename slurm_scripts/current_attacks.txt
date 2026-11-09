@@ -1,0 +1,7 @@
+rot_13
+wikipedia 
+wikipedia_with_title 
+gcg_transfer_universal_attacks 
+evil_confidant 
+distranctors 
+few_shot_json
