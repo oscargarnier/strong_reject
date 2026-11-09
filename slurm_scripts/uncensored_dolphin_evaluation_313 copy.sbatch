@@ -24,6 +24,6 @@ export AMD_SERIALIZE_KERNEL=3 HIP_LAUNCH_BLOCKING=1
 python run_attack_and_evaluation.py \
     --attack none \
     --dataset_file data/strong_reject313.csv \
-    --victim_model deepseek_r1 \
+    --victim_model dolphin_qwen_7B \
     --evaluator strongreject_finetuned
 
