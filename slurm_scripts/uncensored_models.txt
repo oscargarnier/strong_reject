@@ -1,4 +1,4 @@
-llama2
-llama3
-llama31
+llama2_uncensored
+llama3_uncensored
+llama31_uncensored
 tiger_gemma
