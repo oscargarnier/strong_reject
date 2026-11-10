@@ -179,7 +179,7 @@ def generate_to_dataset(
                 print(f"Generating via API: multiprocessing used with {num_processes} processes")
                 generated_dataset = dataset.map(
                     lambda x: {"response": generate(x[target_column], model, **kwargs)},
-                    num_proc=min(multiprocessing.cpu_count(), 16),
+                    num_proc=min(multiprocessing.cpu_count(), num_processes),
                 )
                 # This map function is not adequate for local model inference
                 
