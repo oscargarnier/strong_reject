@@ -32,5 +32,6 @@ python run_attack_and_evaluation.py \
     --dataset_file data/strong_reject10.csv \
     --victim_model tiger_gemma \
     --evaluator strongreject_finetuned \
+    --batch_size 128 \
     --max_tokens 1000 \
     --full_reset

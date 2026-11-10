@@ -39,6 +39,7 @@ parser.add_argument("--dataset_file", type=str, default="data/strong_reject3.csv
 parser.add_argument("--victim_model", type=str, default="llama2-7", help="The victim model to use")
 parser.add_argument("--evaluator", type=str, default="strongreject_finetuned", help="The evaluator to use")
 parser.add_argument("--max_tokens", type=int, default=256, help="The maximum number of tokens to generate")
+parser.add_argument("--batch_size", type=int, default=8, help="The batch size to use for generation")
 parser.add_argument("--full_reset", action="store_true", help="weather to start from scratch")
 args = parser.parse_args()
 
@@ -88,7 +89,7 @@ if os.path.exists(os.path.join(run_dir, "responses.csv")):
     responses_dataset = Dataset.from_pandas(pd.read_csv(os.path.join(run_dir, "responses.csv")))
 else:
     print("No existing generations found. Applying generation.")
-    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", num_processes=1, max_tokens=args.max_tokens)
+    responses_dataset = generate_to_dataset(jailbroken_dataset, [victim_model], target_column="jailbroken_prompt", batch_size=args.batch_size, num_processes=1, max_tokens=args.max_tokens)
     responses_dataset.to_pandas().to_csv(os.path.join(run_dir, "responses.csv"), index=False)
     print(f"Saving all artifacts to: {run_dir}")
 
