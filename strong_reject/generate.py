@@ -114,7 +114,7 @@ def generate_batch(prompts, model, system_prompt=None, batch_size=8, **kwargs):
     assert isinstance(model, str) and model.startswith("hf:")
     pipe = load_model(model[3:])                 # cached, loads once
     pipe.tokenizer.padding_side = "left"         # required for batched decoder-only generation
-    print(f"Recieving batched promts of size {len(prompts)}")
+    print(f"Recieving prompts of size {len(prompts)}, and a batch_size of {batch_size}")
     messages = [convert_to_messages(p, system_prompt=system_prompt) for p in prompts]
 
     kwargs.setdefault("return_full_text", False)
@@ -152,9 +152,9 @@ def generate_to_dataset(
     kwargs_hf = kwargs.copy()
     kwargs_hf.setdefault("return_full_text", False)
     for model in models:
-        ## This doesn't trigger because "model" is the name not the object
         if isinstance(model, TextGenerationPipeline):
-
+            ## This doesn't trigger because "model" is the name not the object
+            print("Model is instance of TextGenerationPipeline")
             model_name = model.model.name_or_path
             responses = []
             for response in model(key_dataset, batch_size=batch_size, **kwargs_hf):
@@ -163,7 +163,7 @@ def generate_to_dataset(
             generated_dataset = dataset.add_column("response", responses)
         else:
             model_name = model
-            print("Confirming the api model branch")
+            print("Model is not instance of TextGenerationPipeline")
             if model.startswith("hf:"):
                 print(f"Generating locally: batching used. Batch size: {batch_size}")
                 # local: single process, one cached model, batched on the GPU

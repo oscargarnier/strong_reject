@@ -14,13 +14,14 @@ from argparse import ArgumentParser
 import torch
 torch.backends.cudnn.enabled = False
 from dotenv import load_dotenv
+import time
 loaded = load_dotenv("/lus/home/CT10/c2016159/ogarnier/strong_reject/.env")
 
 print("Host:", os.uname().nodename)
 print("Job ID:", os.environ.get("SLURM_JOB_ID", "not in Slurm"))
 print("Slurm GPU allocation:", os.environ.get("SLURM_JOB_GPUS", "none"))
 print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES", "unset"))
-
+start_time = time.time()
 
 ## Checking openAI key. For now is correct
 '''
@@ -111,6 +112,13 @@ summary = eval_df.groupby("jailbreak")["score"].mean()
 
 print(f"All artifacts saved to: {run_dir}")
 print(summary)
+
+end_time = time.time()
+## Put it in HH:MM:SS format
+total_time = end_time - start_time
+hours, remainder = divmod(total_time, 3600)
+minutes, seconds = divmod(remainder, 60)
+print(f"Total time taken: {int(hours):02d}:{int(minutes):02d}:{int(seconds):02d} (HH:MM:SS)")
 
 ## For information
 
