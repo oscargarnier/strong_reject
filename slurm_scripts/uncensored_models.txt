@@ -1,4 +1,3 @@
-llama2_uncensored
 llama3_uncensored
 llama31_uncensored
 tiger_gemma

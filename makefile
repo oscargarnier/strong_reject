@@ -26,4 +26,4 @@ launch_attacks:
 	while read -r atk; do sbatch slurm_scripts/$${atk}_sample.sbatch; done < slurm_scripts/current_attacks.txt
 
 uncensored_sample:
-	while read -r model; do sbatch slurm_scripts/uncensored_evaluation_10_$${model}.sbatch; done < slurm_scripts/uncensored_models.txt
+	while read -r model; do sbatch slurm_scripts/$${model}_strong_reject313_uncensored.sbatch; done < slurm_scripts/uncensored_models.txt
