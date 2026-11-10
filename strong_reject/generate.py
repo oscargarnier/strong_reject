@@ -110,7 +110,7 @@ def generate(
 
     return ""
 
-def generate_batch(prompts, model, system_prompt=None, batch_size=16, **kwargs):
+def generate_batch(prompts, model, system_prompt=None, batch_size=8, **kwargs):
     assert isinstance(model, str) and model.startswith("hf:")
     pipe = load_model(model[3:])                 # cached, loads once
     pipe.tokenizer.padding_side = "left"         # required for batched decoder-only generation
@@ -169,7 +169,7 @@ def generate_to_dataset(
                 # local: single process, one cached model, batched on the GPU
                 generated_dataset = dataset.map(
                     lambda batch: {
-                        "response": generate_batch(batch[target_column], model, **kwargs)
+                        "response": generate_batch(batch[target_column], model, batch_size=batch_size, **kwargs)
                     },
                     batched=True,
                     batch_size=batch_size,
@@ -181,25 +181,25 @@ def generate_to_dataset(
                     lambda x: {"response": generate(x[target_column], model, **kwargs)},
                     num_proc=min(multiprocessing.cpu_count(), 16),
                 )
-            # This map function is not adequate for local model inference
-            
-            '''
-            generated_dataset = dataset.map(
-                lambda x: {"response": generate(x[target_column], model, **kwargs)},
-                num_proc=num_processes,
-            )
-            '''
-
-            responses = []
-            for i, x in enumerate(dataset):
-                # Run inference sequentially on each item in the main process
-                print(f"Generating response for prompt {i+1}/{len(dataset)}")
-                res = generate(x[target_column], model, **kwargs)
-                responses.append(res)
-            
-            # Add the responses back as a new column, returning a valid Hugging Face Dataset
-            generated_dataset = dataset.add_column("response", responses)
-
+                # This map function is not adequate for local model inference
+                
+                '''
+                generated_dataset = dataset.map(
+                    lambda x: {"response": generate(x[target_column], model, **kwargs)},
+                    num_proc=num_processes,
+                )
+                '''
+                '''
+                responses = []
+                for i, x in enumerate(dataset):
+                    # Run inference sequentially on each item in the main process
+                    print(f"Generating response for prompt {i+1}/{len(dataset)}")
+                    res = generate(x[target_column], model, **kwargs)
+                    responses.append(res)
+                
+                # Add the responses back as a new column, returning a valid Hugging Face Dataset
+                generated_dataset = dataset.add_column("response", responses)
+                '''
         generated_dataset = generated_dataset.add_column(
             "model", len(generated_dataset) * [model_name]
         )
