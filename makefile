@@ -24,6 +24,8 @@ small_alloc:
 
 launch_attacks:
 	while read -r atk; do sbatch slurm_scripts/$${atk}_sample.sbatch; done < slurm_scripts/current_attacks.txt
-
 uncensored_sample:
+	while read -r model; do sbatch slurm_scripts/$${model}_strong_reject10_uncensored.sbatch; done < slurm_scripts/uncensored_models.txt
+	
+uncensored_fullrun:
 	while read -r model; do sbatch slurm_scripts/$${model}_strong_reject313_uncensored.sbatch; done < slurm_scripts/uncensored_models.txt
