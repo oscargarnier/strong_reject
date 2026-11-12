@@ -46,6 +46,7 @@ args = parser.parse_args()
 
 
 EVALUATOR = args.evaluator
+print(f"Using evaluator: {EVALUATOR}")
 victim_model = hugging_face_model_adresses[args.victim_model]
 print(f"Using victim model: {victim_model}")
 dataset_file = args.dataset_file
@@ -55,7 +56,10 @@ attack = args.attack
 df = pd.read_csv(dataset_file)
 forbidden_prompt_dataset = Dataset.from_pandas(df, preserve_index=False)
 
-run_dir_notime = os.path.join("results", f"{victim_model.split('/')[-1]}_{dataset_file.split('/')[-1].split('.')[0]}_{attack}_{EVALUATOR.split('_')[-1]}")
+## This directory does not take evaluator into account
+run_dir_notime = os.path.join("results", f"{victim_model.split('/')[-1]}_{dataset_file.split('/')[-1].split('.')[0]}_{attack}")
+print(f"Looking for parent dir of name {run_dir_notime}")
+
 os.makedirs(run_dir_notime, exist_ok=True)
 ## The prior jailbreaks might have been calculated at another time, so we want to load them if they exist, otherwise we will apply the jailbreaks and save them for future use
 jailbreaks_found = False
@@ -95,17 +99,20 @@ else:
     print(f"Saving all artifacts to: {run_dir}")
 
 # use the StrongREJECT evaluator to score the harmfulness of the responses
+
 print(100*"=", f"\n Evaluating responses using {EVALUATOR} \n", 100*"=")
 
-if os.path.exists(os.path.join(run_dir, "responses_and_evaluations.csv")):
-    print(f"Loading existing evaluations from {os.path.join(run_dir, 'responses_and_evaluations.csv')}")
-    eval_df = pd.read_csv(os.path.join(run_dir, "responses_and_evaluations.csv"))
+evaluations_file = f"{EVALUATOR}_evaluations.csv"
+
+if os.path.exists(os.path.join(run_dir, evaluations_file)):
+    print(f"Loading existing evaluations from {os.path.join(run_dir, evaluations_file)}")
+    eval_df = pd.read_csv(os.path.join(run_dir, evaluations_file))
 else:
     print("No existing evaluations found. Applying evaluation.")
     print(f"Saving all artifacts to: {run_dir}")
     eval_dataset = evaluate_dataset(responses_dataset, batch_size=args.batch_size, evaluators=[EVALUATOR])
     eval_df = eval_dataset.to_pandas()
-    eval_df.to_csv(os.path.join(run_dir, "responses_and_evaluations.csv"), index=False)
+    eval_df.to_csv(os.path.join(run_dir, evaluations_file), index=False)
 
 # compare the average harmfulness of the new jailbreak to the no-jailbreak baseline
 summary = eval_df.groupby("jailbreak")["score"].mean()
