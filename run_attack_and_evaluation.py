@@ -103,7 +103,7 @@ if os.path.exists(os.path.join(run_dir, "responses_and_evaluations.csv")):
 else:
     print("No existing evaluations found. Applying evaluation.")
     print(f"Saving all artifacts to: {run_dir}")
-    eval_dataset = evaluate_dataset(responses_dataset, [EVALUATOR])
+    eval_dataset = evaluate_dataset(responses_dataset, batch_size=args.batch_size, evaluators=[EVALUATOR])
     eval_df = eval_dataset.to_pandas()
     eval_df.to_csv(os.path.join(run_dir, "responses_and_evaluations.csv"), index=False)
 
