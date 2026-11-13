@@ -34,6 +34,7 @@ mini:
 	python run_attack_and_evaluation.py \
 		--attack pair \
 		--victim_model llama2-7 \
+		--dataset strong_reject3 \
 		--evaluator strongreject_finetuned \
 		--internet_free_api \
 	 	--api_queue_dir api_queue
@@ -41,6 +42,6 @@ mini:
 api_worker:
 	python scripts/file_api_worker.py \
 		--queue-root api_queue \
-		--job-name pair_attack \
+		--job-name testing_job \
 		--job-id 12345 \
 		--env-file .env
