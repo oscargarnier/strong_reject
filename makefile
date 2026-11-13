@@ -32,9 +32,15 @@ uncensored_fullrun:
 
 mini:
 	python run_attack_and_evaluation.py \
-		--attack none \
-		--dataset_file data/strong_reject3.csv \
-		--victim_model qwen_uncensored \
+		--attack pair \
+		--victim_model llama2-7 \
 		--evaluator strongreject_finetuned \
-		--batch_size 1 \
-		--max_tokens 500
+		--internet_free_api \
+	 	--api_queue_dir api_queue
+
+api_worker:
+	python scripts/file_api_worker.py \
+		--queue-root api_queue \
+		--job-name pair_attack \
+		--job-id 12345 \
+		--env-file .env

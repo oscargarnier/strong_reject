@@ -11,6 +11,8 @@ from litellm import completion
 from transformers.pipelines.pt_utils import KeyDataset
 from transformers.pipelines.text_generation import TextGenerationPipeline
 from strong_reject.local_models import load_model
+from strong_reject.file_api import enabled as file_api_enabled
+from strong_reject.file_api import request as file_api_request
 
 def convert_to_messages(
     prompt: Union[str, list[str], list[dict[str, str]]], system_prompt: str = None
@@ -99,7 +101,13 @@ def generate(
         if delay > 0:
             time.sleep(delay)
         try:
-            response = completion(model, messages=messages, **kwargs).choices[0].message.content
+            if file_api_enabled():
+                response = file_api_request(
+                    "completion",
+                    {"model": model, "messages": messages, "kwargs": kwargs},
+                )
+            else:
+                response = completion(model, messages=messages, **kwargs).choices[0].message.content
             if response is not None:
                 return response
         except Exception as e:

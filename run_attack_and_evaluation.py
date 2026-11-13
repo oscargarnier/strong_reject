@@ -2,6 +2,7 @@ from strong_reject.load_datasets import load_strongreject_small
 from strong_reject.jailbreaks import apply_jailbreaks_to_dataset, register_jailbreak
 from strong_reject.generate import generate_to_dataset
 from strong_reject.evaluate import evaluate_dataset
+from strong_reject.file_api import configure as configure_file_api
 
 import os
 import subprocess
@@ -42,7 +43,39 @@ parser.add_argument("--evaluator", type=str, default="strongreject_finetuned", h
 parser.add_argument("--max_tokens", type=int, default=256, help="The maximum number of tokens to generate")
 parser.add_argument("--batch_size", type=int, default=8, help="The batch size to use for generation")
 parser.add_argument("--full_reset", action="store_true", help="weather to start from scratch")
+parser.add_argument(
+    "--internet_free_api",
+    action="store_true",
+    help="Route attack and evaluation API calls through a shared file queue.",
+)
+parser.add_argument(
+    "--api_queue_dir",
+    default=None,
+    help="Root directory for persistent per-Slurm-job API queues.",
+)
+parser.add_argument(
+    "--api_timeout",
+    type=float,
+    default=3600,
+    help="Seconds to wait for each queued API call.",
+)
+parser.add_argument(
+    "--api_poll_interval",
+    type=float,
+    default=2,
+    help="Seconds between checks for queued API responses.",
+)
 args = parser.parse_args()
+
+if args.internet_free_api:
+    if not args.api_queue_dir:
+        parser.error("--api_queue_dir is required with --internet_free_api")
+    queue_dir = configure_file_api(
+        args.api_queue_dir,
+        timeout=args.api_timeout,
+        poll_interval=args.api_poll_interval,
+    )
+    print(f"Internet-free API queue: {queue_dir}")
 
 
 EVALUATOR = args.evaluator
@@ -104,6 +137,11 @@ print(100*"=", f"\n Evaluating responses using {EVALUATOR} \n", 100*"=")
 
 evaluations_file = f"{EVALUATOR}_evaluations.csv"
 
+if EVALUATOR == "reference_based_rubric":
+    # we need to add the reference response to the dataset
+    responses_dataset = responses_dataset.add_column("answer", forbidden_prompt_dataset["answer"])
+
+
 if os.path.exists(os.path.join(run_dir, evaluations_file)):
     print(f"Loading existing evaluations from {os.path.join(run_dir, evaluations_file)}")
     eval_df = pd.read_csv(os.path.join(run_dir, evaluations_file))
@@ -128,4 +166,3 @@ minutes, seconds = divmod(remainder, 60)
 print(f"Total time taken: {int(hours):02d}:{int(minutes):02d}:{int(seconds):02d} (HH:MM:SS)")
 
 ## For information
-
