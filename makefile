@@ -30,14 +30,8 @@ uncensored_sample:
 uncensored_fullrun:
 	while read -r model; do sbatch slurm_scripts/$${model}_strong_reject313_uncensored.sbatch; done < slurm_scripts/uncensored_models.txt
 
-mini:
-	python run_attack_and_evaluation.py \
-		--attack pair \
-		--victim_model llama2-7 \
-		--dataset strong_reject3 \
-		--evaluator strongreject_finetuned \
-		--internet_free_api \
-	 	--api_queue_dir api_queue
+internet_test:
+	sbatch slurm_scripts/pair_internet_test.sbatch
 
 api_worker:
 	python scripts/file_api_worker.py \

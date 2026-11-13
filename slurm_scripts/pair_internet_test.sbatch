@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --account=c2016159
+#SBATCH --constraint=MI250
+#SBATCH --job-name=pair_sample
+#SBATCH --ntasks=1
+#SBATCH --nodes=1
+#SBATCH --gres=gpu:1
+#SBATCH --mem=16G
+#SBATCH --cpus-per-task=4
+#SBATCH --threads-per-core=1
+#SBATCH --time=03:00:00
+#SBATCH --export=ALL
+#SBATCH --output=logs/%x_%j.out
+#SBATCH --error=logs/%x_%j.out
+
+
+# Load your environment (adjust to your cluster)
+source $WORKDIR/envs/strong_env/bin/activate
+echo "Running on $(hostname), partition $SLURM_JOB_PARTITION"
+export HF_HOME=$WORKDIR/hf_cache HF_HUB_OFFLINE=1 HF_HUB_VERBOSITY=debug TRANSFORMERS_OFFLINE=1 LITELLM_LOCAL_MODEL_COST_MAP="True" AMD_SERIALIZE_KERNEL=3 HIP_LAUNCH_BLOCKING=1
+#Check for GPU visibility
+
+python run_attack_and_evaluation.py \
+    --attack pair \
+    --victim_model llama2-7 \
+    --dataset strong_reject3 \
+    --evaluator strongreject_finetuned \
+    --internet_free_api \
+    --api_queue_dir api_queue
+
