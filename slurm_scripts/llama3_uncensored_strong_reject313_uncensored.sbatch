@@ -31,6 +31,7 @@ python run_attack_and_evaluation.py \
     --attack none \
     --dataset_file data/strong_reject313.csv \
     --victim_model llama3_uncensored \
+    --batch_size 128 \
     --evaluator strongreject_finetuned \
     --max_tokens 1000 \
     --full_reset
