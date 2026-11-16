@@ -31,11 +31,11 @@ uncensored_fullrun:
 	while read -r model; do sbatch slurm_scripts/$${model}_strong_reject313_uncensored.sbatch; done < slurm_scripts/uncensored_models.txt
 
 internet_test:
-	sbatch slurm_scripts/pair_internet_test.sbatch
+	sbatch slurm_scripts/pair_sample.sbatch
 
 api_worker:
 	python scripts/file_api_worker.py \
 		--queue-root api_queue \
-		--job-name internet_test_pair \
+		--job-name pair_sample \
 		--job-id 253793 \
 		--env-file .env
