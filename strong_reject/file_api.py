@@ -52,6 +52,7 @@ def request(operation: str, payload: dict[str, Any]) -> dict[str, Any]:
 
     request_id = uuid.uuid4().hex
     request_path = _job_queue / "requests_in" / f"{request_id}.json"
+    print(f"Submitting request {request_id} for operation {operation} to {request_path}")
     response_path = _job_queue / "requests_out" / f"{request_id}.json"
     document = {
         "id": request_id,
