@@ -24,6 +24,7 @@ python run_attack_and_evaluation.py \
     --attack pair \
     --victim_model llama2-7 \
     --dataset data/strong_reject3.csv \
+    --batch_size 1 \
     --evaluator strongreject_finetuned \
     --internet_free_api \
     --api_queue_dir api_queue
