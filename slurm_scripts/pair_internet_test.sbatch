@@ -1,14 +1,14 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=pair_sample
+#SBATCH --job-name=internet_test_pair
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 #SBATCH --mem=16G
 #SBATCH --cpus-per-task=4
 #SBATCH --threads-per-core=1
-#SBATCH --time=03:00:00
+#SBATCH --time=00:50:00
 #SBATCH --export=ALL
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.out
@@ -23,7 +23,7 @@ export HF_HOME=$WORKDIR/hf_cache HF_HUB_OFFLINE=1 HF_HUB_VERBOSITY=debug TRANSFO
 python run_attack_and_evaluation.py \
     --attack pair \
     --victim_model llama2-7 \
-    --dataset strong_reject3 \
+    --dataset data/strong_reject3.csv \
     --evaluator strongreject_finetuned \
     --internet_free_api \
     --api_queue_dir api_queue
