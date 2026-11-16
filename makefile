@@ -36,6 +36,6 @@ internet_test:
 api_worker:
 	python scripts/file_api_worker.py \
 		--queue-root api_queue \
-		--job-name testing_job \
-		--job-id 5974205 \
+		--job-name dynamic_allocation_qwen \
+		--job-id 6007429 \
 		--env-file .env
