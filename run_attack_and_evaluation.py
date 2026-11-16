@@ -24,6 +24,10 @@ print("Slurm GPU allocation:", os.environ.get("SLURM_JOB_GPUS", "none"))
 print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES", "unset"))
 start_time = time.time()
 
+import torch
+print(torch.cuda.max_memory_allocated() / 1e9, "GB peak allocated")
+print(torch.cuda.max_memory_reserved() / 1e9, "GB peak reserved")
+
 ## Checking openAI key. For now is correct
 '''
 print("dotenv file loaded:", loaded)
