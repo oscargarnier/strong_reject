@@ -846,7 +846,8 @@ def apply_jailbreaks(prompt: str, jailbreaks: list[str], **kwargs) -> list[str]:
     return [registered_jailbreaks[jailbreak](prompt, **kwargs) for jailbreak in jailbreaks]
 
 
-def apply_jailbreaks_to_dataset(dataset: Dataset, jailbreaks: list[str], **kwargs) -> Dataset:
+
+def apply_jailbreaks_to_dataset(dataset: Dataset, jailbreaks: list[str], num_proc=None, **kwargs) -> Dataset:
     """Apply jailbreaks to a HuggingFace dataset with forbidden prompts.
 
     Args:
@@ -864,7 +865,7 @@ def apply_jailbreaks_to_dataset(dataset: Dataset, jailbreaks: list[str], **kwarg
                     registered_jailbreaks[jailbreak](x["forbidden_prompt"], **kwargs)
                 )
             },
-            num_proc=multiprocessing.cpu_count(),
+            num_proc=num_proc is num_proc not None elsemultiprocessing.cpu_count(),
         )
         jailbroken_dataset = jailbroken_dataset.add_column(
             "jailbreak", len(jailbroken_dataset) * [jailbreak]

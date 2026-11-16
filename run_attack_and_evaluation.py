@@ -45,7 +45,9 @@ parser.add_argument("--evaluator", type=str, default="strongreject_finetuned", h
 parser.add_argument("--job_name", type=str, default="default_job_name", help="The name of the job")
 parser.add_argument("--max_tokens", type=int, default=256, help="The maximum number of tokens to generate")
 parser.add_argument("--batch_size", type=int, default=8, help="The batch size to use for generation")
+parser.add_argument("--num_proc", type=int, default=1, help="The number of processes to use for generation")
 parser.add_argument("--full_reset", action="store_true", help="weather to start from scratch")
+
 parser.add_argument(
     "--internet_free_api",
     action="store_true",
@@ -118,7 +120,7 @@ else:
     os.makedirs(run_dir, exist_ok=True)
     print(f"Saving all artifacts to: {run_dir}")
     # apply the new jailbreak
-    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, [attack], victim_model=victim_model, max_tokens = 500) ## hardcoded because attacks iterate
+    jailbroken_dataset = apply_jailbreaks_to_dataset(forbidden_prompt_dataset, [attack], num_proc=args.num_proc, victim_model=victim_model, max_tokens = 500) ## hardcoded because attacks iterate
     jailbroken_dataset.to_pandas().to_csv(
         os.path.join(run_dir, "jailbroken_prompts.csv"), index=False
     )
