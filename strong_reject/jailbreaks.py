@@ -865,7 +865,7 @@ def apply_jailbreaks_to_dataset(dataset: Dataset, jailbreaks: list[str], num_pro
                     registered_jailbreaks[jailbreak](x["forbidden_prompt"], **kwargs)
                 )
             },
-            num_proc=num_proc is num_proc not None elsemultiprocessing.cpu_count(),
+            num_proc=num_proc is num_proc not None else multiprocessing.cpu_count(),
         )
         jailbroken_dataset = jailbroken_dataset.add_column(
             "jailbreak", len(jailbroken_dataset) * [jailbreak]
