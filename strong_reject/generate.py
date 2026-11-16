@@ -102,6 +102,7 @@ def generate(
             time.sleep(delay)
         try:
             if file_api_enabled():
+                print(f"Using file API to generate response from model {model}")
                 response = file_api_request(
                     "completion",
                     {"model": model, "messages": messages, "kwargs": kwargs},

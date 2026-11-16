@@ -288,6 +288,7 @@ def pair(
             }
 
     """
+    print(f"Starting PAIR jailbreak for prompt: {prompt}")
     best_score, best_prompt = 1, prompt
     attacker_system_prompt = _pair_templates["attacker_system_prompt"].format(
         goal=prompt, target_str=target_str
@@ -302,6 +303,7 @@ def pair(
         for attack_model in attack_models:
             # fall back on alternative attack models if the preferred attack model fails to generate a jailbroken prompt
             # e.g., GPT-4 sometimes refuses to generate jailbroken prompts
+            print(f"attempring to generate via api model {attack_model}")
             attacker_response = generate(
                 [init_attacker_prompt] + conversation,
                 attack_model,
