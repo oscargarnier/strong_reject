@@ -859,13 +859,15 @@ def apply_jailbreaks_to_dataset(dataset: Dataset, jailbreaks: list[str], num_pro
     """
     jailbroken_datasets = []
     for jailbreak in jailbreaks:
+        num_proc_argument = None if num_proc==1 else multiprocessing.cpu_count() if num_proc is None else num_proc
+        print(f"passing nm_proc={num_proc_argument}")
         jailbroken_dataset = dataset.map(
             lambda x: {
                 "jailbroken_prompt": convert_to_messages(
                     registered_jailbreaks[jailbreak](x["forbidden_prompt"], **kwargs)
                 )
             },
-            num_proc=num_proc if num_proc is not None else multiprocessing.cpu_count(),
+            num_proc=num_proc_argument
         )
         jailbroken_dataset = jailbroken_dataset.add_column(
             "jailbreak", len(jailbroken_dataset) * [jailbreak]
