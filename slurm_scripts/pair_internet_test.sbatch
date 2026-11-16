@@ -27,6 +27,7 @@ python run_attack_and_evaluation.py \
     --batch_size 1 \
     --evaluator strongreject_finetuned \
     --internet_free_api \
+    --job_name internet_test_pair \
     --full_reset \
     --api_queue_dir api_queue
 

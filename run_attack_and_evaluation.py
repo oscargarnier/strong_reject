@@ -42,6 +42,7 @@ parser.add_argument("--attack", type=str, default="none", help="The attack to ap
 parser.add_argument("--dataset_file", type=str, default="data/strong_reject3.csv", help="The dataset file to use")
 parser.add_argument("--victim_model", type=str, default="llama2-7", help="The victim model to use")
 parser.add_argument("--evaluator", type=str, default="strongreject_finetuned", help="The evaluator to use")
+parser.add_argument("--job_name", type=str, default="default_job_name", help="The name of the job")
 parser.add_argument("--max_tokens", type=int, default=256, help="The maximum number of tokens to generate")
 parser.add_argument("--batch_size", type=int, default=8, help="The batch size to use for generation")
 parser.add_argument("--full_reset", action="store_true", help="weather to start from scratch")
@@ -74,6 +75,7 @@ if args.internet_free_api:
         parser.error("--api_queue_dir is required with --internet_free_api")
     queue_dir = configure_file_api(
         args.api_queue_dir,
+        job_name=args.job_name,
         timeout=args.api_timeout,
         poll_interval=args.api_poll_interval,
     )

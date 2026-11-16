@@ -1,7 +1,7 @@
 alloc:
 	salloc --account=c2016159 \
 	--constraint=MI250 \
-	--job-name=dynamic_allocation_qwen \
+	--job-name=internet_test_pair \
 	--ntasks=1 \
 	--nodes=1 \
 	--gres=gpu:1 \
@@ -36,6 +36,6 @@ internet_test:
 api_worker:
 	python scripts/file_api_worker.py \
 		--queue-root api_queue \
-		--job-name dynamic_allocation_qwen \
+		--job-name internet_test_pair \
 		--job-id 6007429 \
 		--env-file .env
