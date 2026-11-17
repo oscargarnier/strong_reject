@@ -24,8 +24,13 @@ print("Slurm GPU allocation:", os.environ.get("SLURM_JOB_GPUS", "none"))
 print("CUDA_VISIBLE_DEVICES:", os.environ.get("CUDA_VISIBLE_DEVICES", "unset"))
 start_time = time.time()
 import torch
+print(f"Memory using device count")
 for i in range(torch.cuda.device_count()):
     print(i, torch.cuda.max_memory_allocated(i)/1e9, torch.cuda.max_memory_reserved(i)/1e9)
+print(f"Memory using 8")
+for i in range(8):
+    print(i, torch.cuda.max_memory_allocated(i)/1e9, torch.cuda.max_memory_reserved(i)/1e9)
+
 ## Checking openAI key. For now is correct
 '''
 print("dotenv file loaded:", loaded)
@@ -55,7 +60,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "--api_queue_dir",
-    default=None,
+    default="api_queue",
     help="Root directory for persistent per-Slurm-job API queues.",
 )
 parser.add_argument(
