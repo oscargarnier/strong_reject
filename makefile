@@ -34,7 +34,7 @@ internet_test:
 	sbatch slurm_scripts/pair_sample.sbatch
 
 api_worker:
-	python scripts/file_api_worker.py \
+	/usr/bin/time -v python scripts/file_api_worker.py \
 		--queue-root api_queue \
 		--job-name pair_sample \
 		--job-id $(J) \
