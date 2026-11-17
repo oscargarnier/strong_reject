@@ -93,6 +93,7 @@ def main() -> None:
     parser.add_argument("--env-file", required=True, help="Dotenv file containing API credentials")
     args = parser.parse_args()
     load_dotenv(args.env_file)
+    print(f"Loaded api key: {os.environ.get('OPENAI_API_KEY')[:3]}...{os.environ.get('OPENAI_API_KEY')[-2:]}", flush=True)
 
     job_dir = Path(args.queue_root).expanduser().resolve() / f"{args.job_name}-{args.job_id}"
     input_dir = job_dir / "requests_in"
