@@ -30,12 +30,14 @@ uncensored_sample:
 uncensored_fullrun:
 	while read -r model; do sbatch slurm_scripts/$${model}_strong_reject313_uncensored.sbatch; done < slurm_scripts/uncensored_models.txt
 
-internet_test:
-	sbatch slurm_scripts/pair_sample.sbatch
+CURRENT_JOB := pair_sample
+
+launch_script:
+	sbatch slurm_scripts/$(CURRENT_JOB).sbatch
 
 api_worker:
 	/usr/bin/time -v python scripts/file_api_worker.py \
 		--queue-root api_queue \
-		--job-name pair_sample \
-		--job-id $(J) \
+		--job-name $(CURRENT_JOB) \
+		--job-id $(ID) \
 		--env-file .env
