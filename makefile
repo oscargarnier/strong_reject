@@ -37,5 +37,5 @@ api_worker:
 	python scripts/file_api_worker.py \
 		--queue-root api_queue \
 		--job-name pair_sample \
-		--job-id 253793 \
+		--job-id $(J) \
 		--env-file .env
