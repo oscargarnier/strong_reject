@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=pap_sample_time
+#SBATCH --job-name=pap_evaluation_test
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
@@ -26,6 +26,6 @@ python run_attack_and_evaluation.py \
     --victim_model llama2-7 \
     --batch_size 1 \
     --internet_free_api \
-    --job_name pap_sample_time \
+    --job_name pap_evaluation_test \
     --evaluator strongreject_rubric \
 
