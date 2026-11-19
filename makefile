@@ -30,7 +30,7 @@ uncensored_sample:
 uncensored_fullrun:
 	while read -r model; do sbatch slurm_scripts/$${model}_strong_reject313_uncensored.sbatch; done < slurm_scripts/uncensored_models.txt
 
-CURRENT_JOB := pair_sample
+CURRENT_JOB := pap_evaluation_test
 
 launch_script:
 	sbatch slurm_scripts/$(CURRENT_JOB).sbatch
