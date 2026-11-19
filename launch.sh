@@ -72,7 +72,7 @@ ID=$(sbatch --parsable "slurm_scripts/${JOB_NAME}.sbatch")
 ID=${ID%%;*}   # strip ";cluster" on multi-cluster setups
 
 SESSION="relay_${ID}"
-echo "Launching relay with job name ${JOB_NAME}
+echo "Launching relay with job name ${JOB_NAME}"
 tmux new-session -d -s "$SESSION" \
   "bash '$(readlink -f "$0")' --inner '${JOB_NAME}' '${ID}' 2>&1 | tee -a logs/watch_${ID}.log"
 
