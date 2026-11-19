@@ -22,7 +22,7 @@ export HF_HOME=$WORKDIR/hf_cache HF_HUB_OFFLINE=1 HF_HUB_VERBOSITY=debug TRANSFO
 
 python run_attack_and_evaluation.py \
     --attack pap_evidence_based_persuasion \
-    --dataset_file data/strong_reject10_tiger.csv \
+    --dataset_file data/strong_reject10.csv \
     --victim_model llama2-7 \
     --batch_size 1 \
     --internet_free_api \
