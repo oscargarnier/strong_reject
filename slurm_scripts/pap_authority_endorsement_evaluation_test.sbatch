@@ -27,5 +27,5 @@ python run_attack_and_evaluation.py \
     --batch_size 1 \
     --internet_free_api \
     --job_name pap_authority_endorsement_evaluation_test \
-    --evaluator strongreject_rubric \
+    --evaluator reference_based_rubric \
 
