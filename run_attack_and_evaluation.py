@@ -148,11 +148,6 @@ print(100*"=", f"\n Evaluating responses using {EVALUATOR} \n", 100*"=")
 
 evaluations_file = f"{EVALUATOR}_evaluations.csv"
 
-if EVALUATOR == "reference_based_rubric":
-    # we need to add the reference response to the dataset
-    responses_dataset = responses_dataset.add_column("answer", forbidden_prompt_dataset["answer"])
-
-
 if os.path.exists(os.path.join(run_dir, evaluations_file)):
     print(f"Loading existing evaluations from {os.path.join(run_dir, evaluations_file)}")
     eval_df = pd.read_csv(os.path.join(run_dir, evaluations_file))
