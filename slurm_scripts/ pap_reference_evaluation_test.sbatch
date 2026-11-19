@@ -27,5 +27,5 @@ python run_attack_and_evaluation.py \
     --batch_size 1 \
     --internet_free_api \
     --job_name pap_reference_evaluation_test \
-    --evaluator reference_based_rubric \
+    --evaluator reference_based_rubric
 
