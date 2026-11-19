@@ -31,6 +31,7 @@ def _timestamp() -> str:
 
 
 def _write_json_atomically(path: Path, document: dict) -> None:
+    print(f"Writing to {path}...", flush=True)
     with tempfile.NamedTemporaryFile(
         mode="w", encoding="utf-8", dir=path.parent, delete=False
     ) as temporary:
