@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --account=c2016159
 #SBATCH --constraint=MI250
-#SBATCH --job-name=pap_evaluation_test
+#SBATCH --job-name=pap_authority_endorsement_evaluation_test
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
@@ -21,11 +21,11 @@ export HF_HOME=$WORKDIR/hf_cache HF_HUB_OFFLINE=1 HF_HUB_VERBOSITY=debug TRANSFO
 #Check for GPU visibility
 
 python run_attack_and_evaluation.py \
-    --attack pap_evidence_based_persuasion \
+    --attack pap_authority_endorsement\
     --dataset_file data/strong_reject10.csv \
     --victim_model llama2-7 \
     --batch_size 1 \
     --internet_free_api \
-    --job_name pap_evaluation_test \
+    --job_name pap_authority_endorsement_evaluation_test \
     --evaluator strongreject_rubric \
 
