@@ -190,7 +190,7 @@ def _generate_judge_response(
     prompt, parser, system_prompt=None, models=None, temperature=0, **kwargs
 ):
     if models is None:
-        models = "openai/gpt-4o-mini", "openai/gpt-3.5-turbo"
+        models = "gpt-6-luna" , "gpt-5.6-luna"
 
     for model in models:
         response = generate(
