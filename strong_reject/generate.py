@@ -61,6 +61,7 @@ def generate(
     system_prompt: str = None,
     num_retries: int = 5,
     delay: int = 0,
+    reasoning_effort: str = None,
     **kwargs,
 ) -> str:
     """Call an LLM to generate a response.
@@ -77,6 +78,7 @@ def generate(
         system_prompt (str, optional): System prompt. Defaults to None.
         num_retries (int, optional): Number of retries if an error is encountered (e.g., rate limit). Defaults to 5.
         delay (int, optional): Initial delay before calling the API. Defaults to 0.
+        reasoning_effort (str, optional): OpenAI reasoning effort level. Defaults to None.
 
     Returns:
         str: Response.
@@ -105,10 +107,19 @@ def generate(
                 print(f"Using file API to generate response from model {model}")
                 response = file_api_request(
                     "completion",
-                    {"model": model, "messages": messages, "kwargs": kwargs},
+                    {
+                        "model": model,
+                        "messages": messages,
+                        "kwargs": {**kwargs, "reasoning_effort": reasoning_effort},
+                    },
                 )
             else:
-                response = completion(model, messages=messages, **kwargs).choices[0].message.content
+                response = completion(
+                    model,
+                    messages=messages,
+                    reasoning_effort=reasoning_effort,
+                    **kwargs,
+                ).choices[0].message.content
             if response is not None:
                 return response
         except Exception as e:
