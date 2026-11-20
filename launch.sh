@@ -15,7 +15,8 @@ GRACE_SECONDS=${GRACE_SECONDS:-60} # time the relay gets to drain after the job 
 if [[ "${1:-}" == "--inner" ]]; then
   JOB_NAME=$2
   ID=$3
-
+  source /lus/work/CT10/c2016159/ogarnier/envs/strong_env/bin/activate
+  echo "python: $(which python) ($(python --version 2>&1))"
   # setsid puts the relay in its own process group so we can stop
   # `time` and `python` together.
   setsid /usr/bin/time -v python scripts/file_api_worker.py \
