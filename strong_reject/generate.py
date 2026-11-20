@@ -103,6 +103,9 @@ def generate(
         if delay > 0:
             time.sleep(delay)
         try:
+            reasoning_effort_kwargs = (
+                {} if reasoning_effort is None else {"reasoning_effort": reasoning_effort}
+            )
             if file_api_enabled():
                 print(f"Using file API to generate response from model {model}")
                 response = file_api_request(
@@ -110,15 +113,15 @@ def generate(
                     {
                         "model": model,
                         "messages": messages,
-                        "kwargs": {**kwargs, "reasoning_effort": reasoning_effort},
+                        "kwargs": {**kwargs, **reasoning_effort_kwargs},
                     },
                 )
             else:
                 response = completion(
                     model,
                     messages=messages,
-                    reasoning_effort=reasoning_effort,
                     **kwargs,
+                    **reasoning_effort_kwargs,
                 ).choices[0].message.content
             if response is not None:
                 return response
